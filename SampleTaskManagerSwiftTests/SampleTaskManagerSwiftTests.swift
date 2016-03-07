@@ -21,16 +21,40 @@ class SampleTaskManagerSwiftTests: XCTestCase {
         super.tearDown()
     }
     
-    func testExample() {
+    func testAddTask() {
+        // Given
+        let taskTitle = "Michael's Task"
+        let nowDate = NSDate()
+        let newTask = MSGTask()
+        let myTasks = MSGTaskList()
+        
+        // When
+        newTask.title = taskTitle
+        
+        // Then
+        XCTAssertEqual(newTask.status, .New)
+        XCTAssertEqualWithAccuracy(nowDate.timeIntervalSinceReferenceDate, newTask.statusDate!.timeIntervalSinceReferenceDate, accuracy: 0.001);
+        XCTAssertEqual(newTask.title, taskTitle)
+        
+        myTasks.updateTaskList(newTask)
+        XCTAssertTrue(myTasks.taskList.contains( {thisTask in thisTask.title == newTask.title} ) )
+    }
+    
+    func testUpdateTask() {
         // This is an example of a functional test case.
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
     
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock {
-            // Put the code you want to measure the time of here.
-        }
+    func testRemoveTask() {
+        // This is an example of a functional test case.
+        // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
+    
+    //    func testPerformanceExample() {
+    //        // This is an example of a performance test case.
+    //        self.measureBlock {
+    //            // Put the code you want to measure the time of here.
+    //        }
+    //    }
     
 }
