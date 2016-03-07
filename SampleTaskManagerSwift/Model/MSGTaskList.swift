@@ -21,16 +21,25 @@ class MSGTaskList {
     }
     
     // MARK: - Stored Properties
-    var taskList: [MSGTask]
-    var taskListOrder: TaskOrder
+    var taskList = [MSGTask]()
+    var taskListOrder: TaskOrder = .Title
     
     // MARK: - Initializers
-    // TODO: TaskList ought to be a singleton
     init() {
-        (taskList, taskListOrder) = MSGTaskList.restoreTaskList()
+        restoreTaskList()
     }
     
     // MARK: - Public API
+    /**
+     Retrieve the `taskList` from persistant storage
+     */
+    func restoreTaskList() {
+        if let retrievedTaskList = MSGTaskListStore.sharedInstance.retrieveTaskList() {
+            taskList = retrievedTaskList.taskList
+            taskListOrder = retrievedTaskList.taskListOrder
+        }
+    }
+    
     /**
     Replace the `withTask` in the `taskList`
     
@@ -42,8 +51,9 @@ class MSGTaskList {
         }
         
         addTask(withTask)
+        sortTaskList()
         
-        saveTaskList()
+        MSGTaskListStore.sharedInstance.storeTaskList(self)
     }
     
     /**
@@ -52,41 +62,29 @@ class MSGTaskList {
      - Parameter taskToRemove: Task data supplied by the UI
      */
     func removeTaskFromList(taskToRemove: MSGTask) {
-        removeTask(taskToRemove)
         
-        saveTaskList()
+        removeTask(taskToRemove)
+        sortTaskList()
+        
+        MSGTaskListStore.sharedInstance.storeTaskList(self)
     }
 
     // MARK: - Private Utility Methods
-    private func saveTaskList() {
-        // TODO:
-        if !taskList.isEmpty {
-            MSGTaskList.sortTaskList()
-            
-            // Convert taskList to Array of Dictionaries
-            // Save taskListOrder to NSUserDefaults
-            // Save taskList to NSUserDefaults
+    private func sortTaskList() {
+
+        switch taskListOrder {
+        case .Title:
+            taskList.sortInPlace( {$0.title < $1.title} )
+        case .DueDate:
+            taskList.sortInPlace( { (left, right) -> Bool in
+                let leftDueDate = left.dueDate ?? NSDate.distantPast()
+                let rightDueDate = right.dueDate ?? NSDate.distantPast()
+                return leftDueDate.compare(rightDueDate) == .OrderedAscending } )
+        case .Status:
+            taskList.sortInPlace( {$0.status.rawValue < $1.status.rawValue} )
+        case .StatusDate:
+            taskList.sortInPlace( {$0.statusDate.compare($1.statusDate) == .OrderedAscending} )
         }
-    }
-    
-    private class func restoreTaskList() -> ([MSGTask], TaskOrder) {
-        // TODO:
-        let restoredTaskList = [MSGTask]()
-        let restoredTaskOrder: TaskOrder = .Title
-        
-        // Pull taskListOrder from NSUserDefaults
-        // Pull taskList from NSUserDefaults
-        // For each item in the Array
-        // Convert the Dictionary to a Task
-        // Add the Task to the taskList
-        
-        MSGTaskList.sortTaskList()
-        
-        return (restoredTaskList, restoredTaskOrder)
-    }
-    
-    private class func sortTaskList() {
-        // TODO:
     }
     
     private func addTask(taskToAdd: MSGTask) {

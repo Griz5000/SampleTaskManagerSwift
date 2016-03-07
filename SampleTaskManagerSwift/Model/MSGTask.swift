@@ -11,21 +11,22 @@ import Foundation
 
 class MSGTask {
     
-    enum TaskStatus {
+    enum TaskStatus: Int {
         case New
         case Done
         case Canceled
     }
     
     // MARK: - Stored Properties
-    var title: String?
+    let title: String
     var description: String?
     var dueDate: NSDate?
-    var status: TaskStatus?
-    var statusDate: NSDate?
+    var status: TaskStatus
+    var statusDate: NSDate
     
     // MARK: - Initializers
-    init() {
+    init(taskTitle: String) {
+        title = taskTitle
         status = .New
         statusDate = NSDate()
     }
@@ -42,29 +43,22 @@ class MSGTask {
             self.statusDate = statusDate
     }
     
-    // MARK: - Class Validation Methods
+    // MARK: - Public API
     func taskValid() -> Bool {
-        return (titleValid() && dateSequenceValid())
+        return dateSequenceValid()
     }
     
-    func titleValid() -> Bool {
-        return (title != nil)
-    }
-    
-    func dueDateValid() -> Bool {
+    // MARK: - Private Utility Methods
+    private func dueDateValid() -> Bool {
         return (dueDate != nil)
     }
     
-    func statusDateValid() -> Bool {
-        return (statusDate != nil)
-    }
-    
-    func dateSequenceValid() -> Bool {
+    private func dateSequenceValid() -> Bool {
         return dueDateValid() &&
-            statusDateValid() &&
-            statusDate?.compare(dueDate!) == .OrderedAscending
+//            ((statusDate.compare(dueDate!) == .OrderedSame) ||
+//                (statusDate.compare(dueDate!) == .OrderedAscending))
+            statusDate.compare(dueDate!) == .OrderedAscending
     }
-    
 }
 
 // MARK: Operator Override

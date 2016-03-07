@@ -15,6 +15,7 @@
 		4CB7D3921C8DBE130040BE06 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4CB7D3911C8DBE130040BE06 /* Main.storyboard */; };
 		4CB7D3971C8DC04C0040BE06 /* MSGTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB7D3961C8DC04C0040BE06 /* MSGTask.swift */; };
 		4CB7D3991C8DC0740040BE06 /* MSGTaskList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB7D3981C8DC0740040BE06 /* MSGTaskList.swift */; };
+		4CB7D39B1C8DDEA60040BE06 /* MSGTaskListStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB7D39A1C8DDEA60040BE06 /* MSGTaskListStore.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		4CB7D3911C8DBE130040BE06 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = View/Main.storyboard; sourceTree = "<group>"; };
 		4CB7D3961C8DC04C0040BE06 /* MSGTask.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MSGTask.swift; path = Model/MSGTask.swift; sourceTree = "<group>"; };
 		4CB7D3981C8DC0740040BE06 /* MSGTaskList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MSGTaskList.swift; path = Model/MSGTaskList.swift; sourceTree = "<group>"; };
+		4CB7D39A1C8DDEA60040BE06 /* MSGTaskListStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MSGTaskListStore.swift; path = Model/MSGTaskListStore.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -149,6 +151,7 @@
 			children = (
 				4CB7D3961C8DC04C0040BE06 /* MSGTask.swift */,
 				4CB7D3981C8DC0740040BE06 /* MSGTaskList.swift */,
+				4CB7D39A1C8DDEA60040BE06 /* MSGTaskListStore.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -291,6 +294,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4CB7D39B1C8DDEA60040BE06 /* MSGTaskListStore.swift in Sources */,
 				4CB7D3971C8DC04C0040BE06 /* MSGTask.swift in Sources */,
 				4CB7D3631C8DBD740040BE06 /* AppDelegate.swift in Sources */,
 				4CB7D3991C8DC0740040BE06 /* MSGTaskList.swift in Sources */,
