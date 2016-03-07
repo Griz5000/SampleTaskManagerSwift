@@ -4,7 +4,7 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
-		<key>SampleTaskManagerSwift.xcscheme</key>
+		<key>SampleTaskManagerSwift.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
 			<integer>0</integer>
@@ -12,6 +12,11 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>4C51C8A61C9B089F005564CE</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>4CB7D35E1C8DBD740040BE06</key>
 		<dict>
 			<key>primary</key>
