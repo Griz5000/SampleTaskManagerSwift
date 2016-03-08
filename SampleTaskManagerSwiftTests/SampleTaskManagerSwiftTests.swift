@@ -23,18 +23,17 @@ class SampleTaskManagerSwiftTests: XCTestCase {
     
     func testAddTask() {
         // Given
-        let taskTitle = "Michael's Task"
+        let taskTitleForTest = "Michael's Task"
         let nowDate = NSDate()
-        let newTask = MSGTask()
+        let newTask = MSGTask(taskTitle: taskTitleForTest)
         let myTasks = MSGTaskList()
         
         // When
-        newTask.title = taskTitle
         
         // Then
-        XCTAssertEqual(newTask.status, .New)
-        XCTAssertEqualWithAccuracy(nowDate.timeIntervalSinceReferenceDate, newTask.statusDate!.timeIntervalSinceReferenceDate, accuracy: 0.001);
-        XCTAssertEqual(newTask.title, taskTitle)
+        XCTAssertEqual(newTask.status, MSGTask.TaskStatus.New)
+        XCTAssertEqualWithAccuracy(nowDate.timeIntervalSinceReferenceDate, newTask.statusDate.timeIntervalSinceReferenceDate, accuracy: 0.001);
+        XCTAssertEqual(newTask.title, taskTitleForTest)
         
         myTasks.updateTaskList(newTask)
         XCTAssertTrue(myTasks.taskList.contains( {thisTask in thisTask.title == newTask.title} ) )

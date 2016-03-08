@@ -13,7 +13,7 @@ import Foundation
  */
 class MSGTaskList {
     
-    enum TaskOrder {
+    enum TaskOrder: Int {
         case Title
         case DueDate
         case Status
