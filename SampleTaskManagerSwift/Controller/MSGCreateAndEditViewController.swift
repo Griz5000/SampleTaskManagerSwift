@@ -9,10 +9,12 @@
 import UIKit
 
 class MSGCreateAndEditViewController: UIViewController {
+    
+    var taskToEdit: MSGTask?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+// TODO: Populate the Create/Edit View Controller
         // Do any additional setup after loading the view.
     }
 
