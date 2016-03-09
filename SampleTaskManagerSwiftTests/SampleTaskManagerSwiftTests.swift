@@ -10,6 +10,8 @@ import XCTest
 @testable import SampleTaskManagerSwift
 
 class SampleTaskManagerSwiftTests: XCTestCase {
+
+    let taskTitleForTest = "Michael's Task"
     
     override func setUp() {
         super.setUp()
@@ -21,32 +23,44 @@ class SampleTaskManagerSwiftTests: XCTestCase {
         super.tearDown()
     }
     
-    func testAddTask() {
+    func testCreateTask() {
+        
         // Given
-        let taskTitleForTest = "Michael's Task"
         let nowDate = NSDate()
-        let newTask = MSGTask(taskTitle: taskTitleForTest)
-        let myTasks = MSGTaskList()
         
         // When
+        let newTask = MSGTask(taskTitle: taskTitleForTest)
         
         // Then
+        XCTAssertEqual(newTask.title, taskTitleForTest)
         XCTAssertEqual(newTask.status, MSGTask.TaskStatus.New)
         XCTAssertEqualWithAccuracy(nowDate.timeIntervalSinceReferenceDate, newTask.statusDate.timeIntervalSinceReferenceDate, accuracy: 0.001);
-        XCTAssertEqual(newTask.title, taskTitleForTest)
+    }
+    
+    func testAddTaskToList() {
+        // Given
+        let newTask = MSGTask(taskTitle: taskTitleForTest)
         
-        myTasks.updateTaskList(newTask)
-        XCTAssertTrue(myTasks.taskList.contains( {thisTask in thisTask.title == newTask.title} ) )
+        // When
+        let myTaskList = MSGTaskList.restoreTaskList()
+        
+        // Then
+        myTaskList.updateTaskList(newTask)
+        XCTAssertTrue(myTaskList.taskList.contains( {thisTask in thisTask.title == newTask.title} ) )
+        XCTAssertTrue(myTaskList.taskList.contains( {thisTask in thisTask.status == newTask.status} ) )
     }
     
-    func testUpdateTask() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-    
-    func testRemoveTask() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
+    func testReplaceTaskInList() {
+        // Given
+        let newTask = MSGTask(taskTitle: taskTitleForTest)
+        let myTaskList = MSGTaskList.restoreTaskList()
+        
+        // When
+        newTask.status = .Done
+        myTaskList.updateTaskList(newTask)
+        
+        // Then
+        XCTAssertTrue(myTaskList.taskList.contains( {thisTask in thisTask.status == newTask.status} ) )
     }
     
     //    func testPerformanceExample() {

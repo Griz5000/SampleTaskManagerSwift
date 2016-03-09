@@ -6,15 +6,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SampleTaskManagerSwift/Model/MSGTask.swift"
-            timestampString = "479083796.597396"
+            timestampString = "479162249.792636"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "30"
-            endingLineNumber = "30"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
             landmarkName = "init(taskTitle:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,43 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SampleTaskManagerSwift/Model/MSGTask.swift"
-            timestampString = "479083796.597396"
+            timestampString = "479165833.657311"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
-            landmarkName = "init(title:description:dueDate:status:statusDate:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SampleTaskManagerSwift/Model/MSGTask.swift"
-            timestampString = "479063502.225199"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
-            landmarkName = "taskValid()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SampleTaskManagerSwift/Model/MSGTask.swift"
-            timestampString = "479083796.597396"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "53"
-            endingLineNumber = "53"
+            startingLineNumber = "93"
+            endingLineNumber = "93"
             landmarkName = "dueDateValid()"
             landmarkType = "5">
          </BreakpointContent>
@@ -74,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SampleTaskManagerSwift/Model/MSGTask.swift"
-            timestampString = "479083796.597396"
+            timestampString = "479165833.657311"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "57"
-            endingLineNumber = "57"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
             landmarkName = "dateSequenceValid()"
             landmarkType = "5">
          </BreakpointContent>
@@ -86,31 +54,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SampleTaskManagerSwift/Model/MSGTaskList.swift"
-            timestampString = "479073064.016779"
+            timestampString = "479226216.987801"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
-            landmarkName = "sortTaskList()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SampleTaskManagerSwift/Model/MSGTaskList.swift"
-            timestampString = "479065393.073609"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
+            startingLineNumber = "89"
+            endingLineNumber = "89"
             landmarkName = "removeTaskFromList(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -118,46 +70,46 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SampleTaskManagerSwift/Model/MSGTaskList.swift"
-            timestampString = "479083796.597396"
+            timestampString = "479226216.987801"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "91"
-            endingLineNumber = "91"
+            startingLineNumber = "114"
+            endingLineNumber = "114"
             landmarkName = "addTask(_:)"
             landmarkType = "5">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "SampleTaskManagerSwift.MSGTaskList.(addTask in _B3D265439C4B1ECA9B692A4D3FC9B028) (SampleTaskManagerSwift.MSGTaskList)(SampleTaskManagerSwift.MSGTask) -&gt; ()"
                   moduleName = "SampleTaskManagerSwift"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Michael/Developer/iHave10Toez/Sandbox/SampleTaskManagerSwift/SampleTaskManagerSwift/Model/MSGTaskList.swift"
-                  timestampString = "479083797.63543"
+                  timestampString = "479226452.04756"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "91"
-                  endingLineNumber = "91"
-                  offsetFromSymbolStart = "27">
+                  startingLineNumber = "114"
+                  endingLineNumber = "114"
+                  offsetFromSymbolStart = "34">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "SampleTaskManagerSwift.MSGTaskList.((addTask in _B3D265439C4B1ECA9B692A4D3FC9B028) (SampleTaskManagerSwift.MSGTaskList) -&gt; (SampleTaskManagerSwift.MSGTask) -&gt; ()).(closure #1)"
                   moduleName = "SampleTaskManagerSwift"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Michael/Developer/iHave10Toez/Sandbox/SampleTaskManagerSwift/SampleTaskManagerSwift/Model/MSGTaskList.swift"
-                  timestampString = "479083797.63557"
+                  timestampString = "479226452.047689"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "91"
-                  endingLineNumber = "91"
+                  startingLineNumber = "114"
+                  endingLineNumber = "114"
                   offsetFromSymbolStart = "16">
                </Location>
             </Locations>
@@ -166,46 +118,46 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SampleTaskManagerSwift/Model/MSGTaskList.swift"
-            timestampString = "479083796.597396"
+            timestampString = "479226216.987801"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
+            startingLineNumber = "120"
+            endingLineNumber = "120"
             landmarkName = "removeTask(_:)"
             landmarkType = "5">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "SampleTaskManagerSwift.MSGTaskList.(removeTask in _B3D265439C4B1ECA9B692A4D3FC9B028) (SampleTaskManagerSwift.MSGTaskList)(SampleTaskManagerSwift.MSGTask) -&gt; ()"
                   moduleName = "SampleTaskManagerSwift"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Michael/Developer/iHave10Toez/Sandbox/SampleTaskManagerSwift/SampleTaskManagerSwift/Model/MSGTaskList.swift"
-                  timestampString = "479084054.74382"
+                  timestampString = "479226452.050557"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "97"
-                  endingLineNumber = "97"
-                  offsetFromSymbolStart = "36">
+                  startingLineNumber = "120"
+                  endingLineNumber = "120"
+                  offsetFromSymbolStart = "43">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "SampleTaskManagerSwift.MSGTaskList.((removeTask in _B3D265439C4B1ECA9B692A4D3FC9B028) (SampleTaskManagerSwift.MSGTaskList) -&gt; (SampleTaskManagerSwift.MSGTask) -&gt; ()).(closure #1)"
                   moduleName = "SampleTaskManagerSwift"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Michael/Developer/iHave10Toez/Sandbox/SampleTaskManagerSwift/SampleTaskManagerSwift/Model/MSGTaskList.swift"
-                  timestampString = "479084054.744239"
+                  timestampString = "479226452.05075"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "97"
-                  endingLineNumber = "97"
+                  startingLineNumber = "120"
+                  endingLineNumber = "120"
                   offsetFromSymbolStart = "16">
                </Location>
             </Locations>
@@ -214,63 +166,95 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SampleTaskManagerSwift/Model/MSGTask.swift"
+            timestampString = "479165833.657311"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "106"
+            endingLineNumber = "106"
+            landmarkName = "==(_:_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SampleTaskManagerSwift/Model/MSGTask.swift"
+            timestampString = "479165833.657311"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
+            landmarkName = "init(newTaskTitle:newTaskTaskDescription:newTaskDueDate:newTaskStatusInt:newTaskStatusDate:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SampleTaskManagerSwift/Model/MSGTask.swift"
+            timestampString = "479171678.72115"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "65"
+            endingLineNumber = "65"
+            landmarkName = "encodeWithCoder(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SampleTaskManagerSwift/Model/MSGTask.swift"
+            timestampString = "479171678.72115"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "init(coder:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SampleTaskManagerSwift/Model/MSGTaskList.swift"
-            timestampString = "479065393.073609"
+            timestampString = "479171678.72115"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
-            landmarkName = "updateTaskList(_:)"
+            startingLineNumber = "35"
+            endingLineNumber = "35"
+            landmarkName = "init()"
             landmarkType = "5">
-            <Locations>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SampleTaskManagerSwift.MSGTaskList.updateTaskList (SampleTaskManagerSwift.MSGTaskList)(SampleTaskManagerSwift.MSGTask) -&gt; ()"
-                  moduleName = "SampleTaskManagerSwift"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Michael/Developer/iHave10Toez/Sandbox/SampleTaskManagerSwift/SampleTaskManagerSwift/Model/MSGTaskList.swift"
-                  timestampString = "479083797.644778"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "49"
-                  endingLineNumber = "49"
-                  offsetFromSymbolStart = "36">
-               </Location>
-               <Location
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "SampleTaskManagerSwift.MSGTaskList.(updateTaskList (SampleTaskManagerSwift.MSGTaskList) -&gt; (SampleTaskManagerSwift.MSGTask) -&gt; ()).(closure #1)"
-                  moduleName = "SampleTaskManagerSwift"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/Michael/Developer/iHave10Toez/Sandbox/SampleTaskManagerSwift/SampleTaskManagerSwift/Model/MSGTaskList.swift"
-                  timestampString = "479083797.644933"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "49"
-                  endingLineNumber = "49"
-                  offsetFromSymbolStart = "16">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SampleTaskManagerSwift/Model/MSGTaskListStore.swift"
-            timestampString = "479156525.74423"
+            timestampString = "479169132.040795"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "48"
-            endingLineNumber = "48"
+            startingLineNumber = "30"
+            endingLineNumber = "30"
             landmarkName = "storeTaskList(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -278,15 +262,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SampleTaskManagerSwift/Model/MSGTaskListStore.swift"
-            timestampString = "479156525.74423"
+            timestampString = "479169340.263064"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
             landmarkName = "retrieveTaskList()"
             landmarkType = "5">
          </BreakpointContent>
@@ -297,40 +281,72 @@
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SampleTaskManagerSwift/Model/MSGTaskList.swift"
-            timestampString = "479065393.073609"
+            filePath = "SampleTaskManagerSwift/Model/MSGTask.swift"
+            timestampString = "479169550.443043"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
-            landmarkName = "restoreTaskList()"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
+            landmarkName = "taskValid()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SampleTaskManagerSwift/Model/MSGTaskList.swift"
+            timestampString = "479226882.535848"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
+            landmarkName = "encodeWithCoder(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SampleTaskManagerSwift/Model/MSGTaskList.swift"
+            timestampString = "479171678.72115"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "39"
+            endingLineNumber = "39"
+            landmarkName = "init(newTaskList:newTaskOrderInt:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SampleTaskManagerSwift/Model/MSGTaskListStore.swift"
-            timestampString = "479156525.74423"
+            timestampString = "479171969.60101"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "29"
-            endingLineNumber = "29"
+            startingLineNumber = "20"
+            endingLineNumber = "20"
             landmarkName = "MSGTaskListStore"
             landmarkType = "3">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "globalinit_33_5D27550534B922B439ED133262F54959_func1"
                   moduleName = "SampleTaskManagerSwift"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Michael/Developer/iHave10Toez/Sandbox/SampleTaskManagerSwift/SampleTaskManagerSwift/Model/MSGTaskListStore.swift"
-                  timestampString = "479083797.657731"
+                  timestampString = "479226452.076007"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "20"
@@ -338,14 +354,14 @@
                   offsetFromSymbolStart = "4">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "SampleTaskManagerSwift.MSGTaskListStore.sharedInstance.unsafeMutableAddressor : SampleTaskManagerSwift.MSGTaskListStore"
+                  symbolName = "SampleTaskManagerSwift.MSGTaskListStore.documentsDirectory.unsafeMutableAddressor : __ObjC.NSURL"
                   moduleName = "SampleTaskManagerSwift"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Michael/Developer/iHave10Toez/Sandbox/SampleTaskManagerSwift/SampleTaskManagerSwift/Model/MSGTaskListStore.swift"
-                  timestampString = "479083797.657853"
+                  timestampString = "479226452.076134"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "20"
@@ -353,14 +369,14 @@
                   offsetFromSymbolStart = "4">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "static SampleTaskManagerSwift.MSGTaskListStore.sharedInstance.getter : SampleTaskManagerSwift.MSGTaskListStore"
+                  symbolName = "static SampleTaskManagerSwift.MSGTaskListStore.documentsDirectory.getter : __ObjC.NSURL"
                   moduleName = "SampleTaskManagerSwift"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Michael/Developer/iHave10Toez/Sandbox/SampleTaskManagerSwift/SampleTaskManagerSwift/Model/MSGTaskListStore.swift"
-                  timestampString = "479083797.657958"
+                  timestampString = "479226452.076259"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "0"
@@ -373,17 +389,336 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SampleTaskManagerSwift/Model/MSGTask.swift"
-            timestampString = "479083796.597396"
+            filePath = "SampleTaskManagerSwift/Model/MSGTaskListStore.swift"
+            timestampString = "479171970.925006"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "66"
-            endingLineNumber = "66"
-            landmarkName = "==(_:_:)"
-            landmarkType = "7">
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "MSGTaskListStore"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "globalinit_33_5D27550534B922B439ED133262F54959_func2"
+                  moduleName = "SampleTaskManagerSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Michael/Developer/iHave10Toez/Sandbox/SampleTaskManagerSwift/SampleTaskManagerSwift/Model/MSGTaskListStore.swift"
+                  timestampString = "479226452.077604"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SampleTaskManagerSwift.MSGTaskListStore.archiveURL.unsafeMutableAddressor : __ObjC.NSURL"
+                  moduleName = "SampleTaskManagerSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Michael/Developer/iHave10Toez/Sandbox/SampleTaskManagerSwift/SampleTaskManagerSwift/Model/MSGTaskListStore.swift"
+                  timestampString = "479226452.077727"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "21"
+                  endingLineNumber = "21"
+                  offsetFromSymbolStart = "4">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "static SampleTaskManagerSwift.MSGTaskListStore.archiveURL.getter : __ObjC.NSURL"
+                  moduleName = "SampleTaskManagerSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Michael/Developer/iHave10Toez/Sandbox/SampleTaskManagerSwift/SampleTaskManagerSwift/Model/MSGTaskListStore.swift"
+                  timestampString = "479226452.07783"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "0"
+                  endingLineNumber = "0"
+                  offsetFromSymbolStart = "12">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SampleTaskManagerSwift/Model/MSGTaskList.swift"
+            timestampString = "479227914.421738"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "63"
+            endingLineNumber = "63"
+            landmarkName = "restoreTaskList()"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SampleTaskManagerSwift/Model/MSGTaskList.swift"
+            timestampString = "479227248.172514"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "100"
+            endingLineNumber = "100"
+            landmarkName = "sortTaskList()"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SampleTaskManagerSwift.MSGTaskList.(sortTaskList in _B3D265439C4B1ECA9B692A4D3FC9B028) (SampleTaskManagerSwift.MSGTaskList)() -&gt; ()"
+                  moduleName = "SampleTaskManagerSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Michael/Developer/iHave10Toez/Sandbox/SampleTaskManagerSwift/SampleTaskManagerSwift/Model/MSGTaskList.swift"
+                  timestampString = "479227821.090993"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "100"
+                  endingLineNumber = "100"
+                  offsetFromSymbolStart = "167">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SampleTaskManagerSwift.MSGTaskList.((sortTaskList in _B3D265439C4B1ECA9B692A4D3FC9B028) (SampleTaskManagerSwift.MSGTaskList) -&gt; () -&gt; ()).(closure #1)"
+                  moduleName = "SampleTaskManagerSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Michael/Developer/iHave10Toez/Sandbox/SampleTaskManagerSwift/SampleTaskManagerSwift/Model/MSGTaskList.swift"
+                  timestampString = "479227821.091335"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "100"
+                  endingLineNumber = "100"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SampleTaskManagerSwift/Model/MSGTaskList.swift"
+            timestampString = "479227250.252116"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "102"
+            endingLineNumber = "102"
+            landmarkName = "sortTaskList()"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SampleTaskManagerSwift.MSGTaskList.(sortTaskList in _B3D265439C4B1ECA9B692A4D3FC9B028) (SampleTaskManagerSwift.MSGTaskList)() -&gt; ()"
+                  moduleName = "SampleTaskManagerSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Michael/Developer/iHave10Toez/Sandbox/SampleTaskManagerSwift/SampleTaskManagerSwift/Model/MSGTaskList.swift"
+                  timestampString = "479227821.092545"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "102"
+                  endingLineNumber = "102"
+                  offsetFromSymbolStart = "853">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SampleTaskManagerSwift.MSGTaskList.((sortTaskList in _B3D265439C4B1ECA9B692A4D3FC9B028) (SampleTaskManagerSwift.MSGTaskList) -&gt; () -&gt; ()).(closure #2)"
+                  moduleName = "SampleTaskManagerSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Michael/Developer/iHave10Toez/Sandbox/SampleTaskManagerSwift/SampleTaskManagerSwift/Model/MSGTaskList.swift"
+                  timestampString = "479227821.09278"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "103"
+                  endingLineNumber = "103"
+                  offsetFromSymbolStart = "26">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SampleTaskManagerSwift/Model/MSGTaskList.swift"
+            timestampString = "479227253.436264"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "107"
+            endingLineNumber = "107"
+            landmarkName = "sortTaskList()"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SampleTaskManagerSwift.MSGTaskList.(sortTaskList in _B3D265439C4B1ECA9B692A4D3FC9B028) (SampleTaskManagerSwift.MSGTaskList)() -&gt; ()"
+                  moduleName = "SampleTaskManagerSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Michael/Developer/iHave10Toez/Sandbox/SampleTaskManagerSwift/SampleTaskManagerSwift/Model/MSGTaskList.swift"
+                  timestampString = "479227821.09392"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "107"
+                  endingLineNumber = "107"
+                  offsetFromSymbolStart = "1539">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SampleTaskManagerSwift.MSGTaskList.((sortTaskList in _B3D265439C4B1ECA9B692A4D3FC9B028) (SampleTaskManagerSwift.MSGTaskList) -&gt; () -&gt; ()).(closure #3)"
+                  moduleName = "SampleTaskManagerSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Michael/Developer/iHave10Toez/Sandbox/SampleTaskManagerSwift/SampleTaskManagerSwift/Model/MSGTaskList.swift"
+                  timestampString = "479227821.094052"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "107"
+                  endingLineNumber = "107"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SampleTaskManagerSwift/Model/MSGTaskList.swift"
+            timestampString = "479227256.076236"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "109"
+            endingLineNumber = "109"
+            landmarkName = "sortTaskList()"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SampleTaskManagerSwift.MSGTaskList.(sortTaskList in _B3D265439C4B1ECA9B692A4D3FC9B028) (SampleTaskManagerSwift.MSGTaskList)() -&gt; ()"
+                  moduleName = "SampleTaskManagerSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Michael/Developer/iHave10Toez/Sandbox/SampleTaskManagerSwift/SampleTaskManagerSwift/Model/MSGTaskList.swift"
+                  timestampString = "479227821.095352"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "109"
+                  endingLineNumber = "109"
+                  offsetFromSymbolStart = "2210">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SampleTaskManagerSwift.MSGTaskList.((sortTaskList in _B3D265439C4B1ECA9B692A4D3FC9B028) (SampleTaskManagerSwift.MSGTaskList) -&gt; () -&gt; ()).(closure #4)"
+                  moduleName = "SampleTaskManagerSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Michael/Developer/iHave10Toez/Sandbox/SampleTaskManagerSwift/SampleTaskManagerSwift/Model/MSGTaskList.swift"
+                  timestampString = "479227821.095486"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "109"
+                  endingLineNumber = "109"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SampleTaskManagerSwift/Model/MSGTaskList.swift"
+            timestampString = "479227386.802013"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "55"
+            endingLineNumber = "55"
+            landmarkName = "init(coder:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SampleTaskManagerSwift/Model/MSGTaskList.swift"
+            timestampString = "479227953.981414"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
+            landmarkName = "updateTaskList(_:)"
+            landmarkType = "5">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SampleTaskManagerSwift.MSGTaskList.updateTaskList (SampleTaskManagerSwift.MSGTaskList)(SampleTaskManagerSwift.MSGTask) -&gt; ()"
+                  moduleName = "SampleTaskManagerSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Michael/Developer/iHave10Toez/Sandbox/SampleTaskManagerSwift/SampleTaskManagerSwift/Model/MSGTaskList.swift"
+                  timestampString = "479228314.94287"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "72"
+                  endingLineNumber = "72"
+                  offsetFromSymbolStart = "43">
+               </Location>
+               <Location
+                  shouldBeEnabled = "No"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "SampleTaskManagerSwift.MSGTaskList.(updateTaskList (SampleTaskManagerSwift.MSGTaskList) -&gt; (SampleTaskManagerSwift.MSGTask) -&gt; ()).(closure #1)"
+                  moduleName = "SampleTaskManagerSwift"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/Michael/Developer/iHave10Toez/Sandbox/SampleTaskManagerSwift/SampleTaskManagerSwift/Model/MSGTaskList.swift"
+                  timestampString = "479228314.943098"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "72"
+                  endingLineNumber = "72"
+                  offsetFromSymbolStart = "16">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

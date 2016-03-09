@@ -11,8 +11,9 @@ import Foundation
 /**
  Model for the SampleTaskManagerSwift application
  */
-class MSGTaskList {
+class MSGTaskList: NSObject, NSCoding {
     
+    // MARK: - Types
     enum TaskOrder: Int {
         case Title
         case DueDate
@@ -20,24 +21,46 @@ class MSGTaskList {
         case StatusDate
     }
     
+    struct MSGTaskListPropertyKey {
+        static let taskListKey = "TaskList"
+        static let taskListOrderKey = "TaskListOrder"
+    }
+    
     // MARK: - Stored Properties
     var taskList = [MSGTask]()
     var taskListOrder: TaskOrder = .Title
     
     // MARK: - Initializers
-    init() {
-        restoreTaskList()
+    override init() {
+        super.init()
+    }
+    
+    convenience init(newTaskList: [MSGTask], newTaskOrderInt: Int) {
+        self.init()
+        
+        taskList = newTaskList
+        taskListOrder = TaskOrder(rawValue: newTaskOrderInt) ?? .Title
+    }
+    
+    // MARK: - NSCoding
+    func encodeWithCoder(aCoder: NSCoder) {
+        aCoder.encodeObject(taskList, forKey: MSGTaskListPropertyKey.taskListKey)
+        aCoder.encodeInteger(taskListOrder.rawValue, forKey: MSGTaskListPropertyKey.taskListOrderKey)
+    }
+    
+    required convenience init(coder aDecoder: NSCoder) {
+        let archivedTaskList = aDecoder.decodeObjectForKey(MSGTaskListPropertyKey.taskListKey) as! [MSGTask]
+        let archivedTaskOrderInt = aDecoder.decodeIntegerForKey(MSGTaskListPropertyKey.taskListOrderKey)
+        
+        self.init(newTaskList: archivedTaskList, newTaskOrderInt: archivedTaskOrderInt)
     }
     
     // MARK: - Public API
     /**
      Retrieve the `taskList` from persistant storage
      */
-    func restoreTaskList() {
-        if let retrievedTaskList = MSGTaskListStore.sharedInstance.retrieveTaskList() {
-            taskList = retrievedTaskList.taskList
-            taskListOrder = retrievedTaskList.taskListOrder
-        }
+    static func restoreTaskList() -> MSGTaskList {
+        return MSGTaskListStore.sharedInstance.retrieveTaskList() ?? MSGTaskList()
     }
     
     /**
