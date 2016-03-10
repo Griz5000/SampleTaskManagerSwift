@@ -13,6 +13,7 @@ class SampleTaskManagerSwiftTests: XCTestCase {
 
     let taskTitleForTest = "Michael's Task"
     let secondTaskTitleForTest = "John's Task"
+    let thirdTaskTitleForTest = "Jacob's Task"
     
     override func setUp() {
         super.setUp()
@@ -75,6 +76,32 @@ class SampleTaskManagerSwiftTests: XCTestCase {
         myTaskList.updateTaskList(newTask)
         XCTAssertTrue(myTaskList.taskList.contains( {thisTask in thisTask.title == newTask.title} ) )
         XCTAssertTrue(myTaskList.taskList.contains( {thisTask in thisTask.status == newTask.status} ) )
+    }
+    
+    func testAddThirdTaskToList() {
+        // Given
+        let newTask = MSGTask(taskTitle: thirdTaskTitleForTest)
+        
+        // When
+        let myTaskList = MSGTaskList.restoreTaskList()
+        
+        // Then
+        newTask.status = .Canceled
+        myTaskList.updateTaskList(newTask)
+        XCTAssertTrue(myTaskList.taskList.contains( {thisTask in thisTask.title == newTask.title} ) )
+        XCTAssertTrue(myTaskList.taskList.contains( {thisTask in thisTask.status == newTask.status} ) )
+    }
+    
+    func testRemoveSecondTaskFromList() {
+        // Given
+        let newTask = MSGTask(taskTitle: secondTaskTitleForTest)
+        
+        // When
+        let myTaskList = MSGTaskList.restoreTaskList()
+        
+        // Then
+        myTaskList.removeTaskFromList(newTask)
+        XCTAssertFalse(myTaskList.taskList.contains( {thisTask in thisTask.title == newTask.title} ) )
     }
     
     //    func testPerformanceExample() {

@@ -10,12 +10,15 @@ import UIKit
 
 class MSGCreateAndEditViewController: UIViewController {
     
+    // MARK: - Stored Properties
     var taskToEdit: MSGTask?
 
+    // MARK: - View Controller Delegate Methods
     override func viewDidLoad() {
         super.viewDidLoad()
 // TODO: Populate the Create/Edit View Controller
         // Do any additional setup after loading the view.
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -23,15 +26,10 @@ class MSGCreateAndEditViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    // MARK: - Target / Action Methods
+    @IBAction func clearButtonSelected(sender: UIBarButtonItem) {
     }
-    */
-
+    
+    @IBAction func applyButtonSelected(sender: AnyObject) {
+    }
 }
