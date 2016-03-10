@@ -22,7 +22,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="130"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3gc-6q-vog">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3gc-6q-vog">
                                             <rect key="frame" x="8" y="8" width="584" height="25"/>
                                             <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="22"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -68,6 +68,12 @@
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="taskDueDateLabel" destination="DV2-Cl-J5K" id="qAG-dT-b00"/>
+                                    <outlet property="taskStatusDateLabel" destination="sJi-fy-FQT" id="JmO-4Q-VZu"/>
+                                    <outlet property="taskStatusLabel" destination="aL2-qo-bXe" id="7bx-lt-WER"/>
+                                    <outlet property="taskTitleLabel" destination="3gc-6q-vog" id="2hq-GU-JdE"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -88,7 +94,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Hue-Xw-gLi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1300" y="528"/>
+            <point key="canvasLocation" x="1239" y="528"/>
         </scene>
         <!--Create And Edit View Controller-->
         <scene sceneID="iFc-8W-85o">

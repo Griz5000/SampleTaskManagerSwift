@@ -12,6 +12,7 @@ import XCTest
 class SampleTaskManagerSwiftTests: XCTestCase {
 
     let taskTitleForTest = "Michael's Task"
+    let secondTaskTitleForTest = "John's Task"
     
     override func setUp() {
         super.setUp()
@@ -60,6 +61,19 @@ class SampleTaskManagerSwiftTests: XCTestCase {
         myTaskList.updateTaskList(newTask)
         
         // Then
+        XCTAssertTrue(myTaskList.taskList.contains( {thisTask in thisTask.status == newTask.status} ) )
+    }
+    
+    func testAddSecondTaskToList() {
+        // Given
+        let newTask = MSGTask(taskTitle: secondTaskTitleForTest)
+        
+        // When
+        let myTaskList = MSGTaskList.restoreTaskList()
+        
+        // Then
+        myTaskList.updateTaskList(newTask)
+        XCTAssertTrue(myTaskList.taskList.contains( {thisTask in thisTask.title == newTask.title} ) )
         XCTAssertTrue(myTaskList.taskList.contains( {thisTask in thisTask.status == newTask.status} ) )
     }
     

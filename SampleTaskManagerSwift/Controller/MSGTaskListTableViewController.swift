@@ -8,11 +8,28 @@
 
 import UIKit
 
+extension MSGTask.TaskStatus {
+    
+    func stringRepresentation() -> String {
+        switch self {
+        case .New:
+            return "New"
+        case .Done:
+            return "Done"
+        case .Canceled:
+            return "Canceled"
+        }
+    } 
+}
+
 class MSGTaskListTableViewController: UITableViewController {
 
+    // MARK: - Constants
     private static let taskCellIdentifier = "MSGTaskCell"
     private static let updateTaskSegueIdentifier = "UpdateTaskSegue"
+    private static let taskTableCellHeight: CGFloat = 130.0
     
+    // MARK: - Stored  Properties
     // Restore the task list from persistant storage, or an empty task list if none was found
     private let appTaskList = MSGTaskList.restoreTaskList()
     
@@ -42,16 +59,35 @@ class MSGTaskListTableViewController: UITableViewController {
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell: MSGTaskTableViewCell =
+        let taskCell: MSGTaskTableViewCell =
             tableView.dequeueReusableCellWithIdentifier(MSGTaskListTableViewController.taskCellIdentifier,
                 forIndexPath: indexPath) as! MSGTaskTableViewCell
+        
+        let appTask = appTaskList.taskList[indexPath.row]
+        
 // TODO:
         // Configure the cell...
-
-        return cell
+        taskCell.taskTitleLabel.text = "Title: \(appTask.title)"
+        
+        var taskDueDateString: String
+        if let _ = appTask.dueDate {
+            taskDueDateString = NSDateFormatter.localizedStringFromDate(appTask.dueDate!, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
+        } else {
+            taskDueDateString = "Unset"
+        }
+        taskCell.taskDueDateLabel.text = "Due Date: \(taskDueDateString)"
+        taskCell.taskStatusLabel.text = "Status : \(appTask.status.stringRepresentation())"
+        
+        let taskStatusDateString = NSDateFormatter.localizedStringFromDate(appTask.statusDate, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
+        taskCell.taskStatusDateLabel.text = "Status Date: \(taskStatusDateString)"
+        
+        return taskCell
     }
     
     // MARK: - Table View Delegate
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return MSGTaskListTableViewController.taskTableCellHeight
+    }
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let selectedTask = appTaskList.taskList[indexPath.row]
         performSegueWithIdentifier(MSGTaskListTableViewController.updateTaskSegueIdentifier, sender: selectedTask)
@@ -61,13 +97,13 @@ class MSGTaskListTableViewController: UITableViewController {
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let segueIdentifier = segue.identifier {
-            if let taskToEdit = sender as? MSGTask {
-                switch segueIdentifier {
-                case MSGTaskListTableViewController.updateTaskSegueIdentifier:
+            switch segueIdentifier {
+            case MSGTaskListTableViewController.updateTaskSegueIdentifier:
+                if let taskToEdit = sender as? MSGTask {
                     let appTaskDetailsViewController = segue.destinationViewController as! MSGCreateAndEditViewController
                         appTaskDetailsViewController.taskToEdit = taskToEdit
-                default: break
                 }
+            default: break
             }
         }
     }
