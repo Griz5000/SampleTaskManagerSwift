@@ -181,6 +181,9 @@
                                                     <segment title="Done"/>
                                                     <segment title="Canceled"/>
                                                 </segments>
+                                                <connections>
+                                                    <action selector="statusTypeSegmentedControlSelected" destination="ywX-AT-Qdr" eventType="valueChanged" id="3nW-XI-4YR"/>
+                                                </connections>
                                             </segmentedControl>
                                             <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="N0p-FE-MTP">
                                                 <rect key="frame" x="150" y="260" width="430" height="23"/>

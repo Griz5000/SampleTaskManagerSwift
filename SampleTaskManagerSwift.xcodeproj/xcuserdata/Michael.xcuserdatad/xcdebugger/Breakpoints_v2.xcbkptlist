@@ -42,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SampleTaskManagerSwift/Controller/MSGTaskListTableViewController.swift"
-            timestampString = "479420661.969485"
+            timestampString = "479422417.541387"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "82"
-            endingLineNumber = "82"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
             landmarkName = "tableView(_:cellForRowAtIndexPath:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -70,63 +70,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SampleTaskManagerSwift/Controller/MSGCreateAndEditViewController.swift"
-            timestampString = "479416084.005273"
+            timestampString = "479425600.689474"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "65"
-            endingLineNumber = "65"
-            landmarkName = "applyButtonSelected(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SampleTaskManagerSwift/Controller/MSGCreateAndEditViewController.swift"
-            timestampString = "479416084.005273"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "41"
-            endingLineNumber = "41"
-            landmarkName = "viewDidLoad()"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SampleTaskManagerSwift/Controller/MSGCreateAndEditViewController.swift"
-            timestampString = "479416084.005273"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
-            landmarkName = "textFieldShouldBeginEditing(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "SampleTaskManagerSwift/Controller/MSGCreateAndEditViewController.swift"
-            timestampString = "479421489.330328"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "164"
-            endingLineNumber = "164"
+            startingLineNumber = "179"
+            endingLineNumber = "179"
             landmarkName = "populateUI()"
             landmarkType = "5">
          </BreakpointContent>
@@ -134,7 +86,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SampleTaskManagerSwift/Model/MSGTaskList.swift"
@@ -147,34 +99,34 @@
             landmarkType = "5">
             <Locations>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "SampleTaskManagerSwift.MSGTaskList.(sortTasksInList in _B3D265439C4B1ECA9B692A4D3FC9B028) (SampleTaskManagerSwift.MSGTaskList)() -&gt; ()"
                   moduleName = "SampleTaskManagerSwift"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Michael/Developer/iHave10Toez/Sandbox/SampleTaskManagerSwift/SampleTaskManagerSwift/Model/MSGTaskList.swift"
-                  timestampString = "479421181.119256"
+                  timestampString = "479422466.129978"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "110"
                   endingLineNumber = "110"
-                  offsetFromSymbolStart = "656">
+                  offsetFromSymbolStart = "728">
                </Location>
                <Location
-                  shouldBeEnabled = "Yes"
+                  shouldBeEnabled = "No"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
                   symbolName = "SampleTaskManagerSwift.MSGTaskList.((sortTasksInList in _B3D265439C4B1ECA9B692A4D3FC9B028) (SampleTaskManagerSwift.MSGTaskList) -&gt; () -&gt; ()).(closure #2)"
                   moduleName = "SampleTaskManagerSwift"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/Michael/Developer/iHave10Toez/Sandbox/SampleTaskManagerSwift/SampleTaskManagerSwift/Model/MSGTaskList.swift"
-                  timestampString = "479421181.119411"
+                  timestampString = "479422466.130117"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "111"
                   endingLineNumber = "111"
-                  offsetFromSymbolStart = "28">
+                  offsetFromSymbolStart = "48">
                </Location>
             </Locations>
          </BreakpointContent>
@@ -182,16 +134,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "No"
+            shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "SampleTaskManagerSwift/Controller/MSGTaskListTableViewController.swift"
-            timestampString = "479421358.678407"
+            filePath = "SampleTaskManagerSwift/Controller/MSGCreateAndEditViewController.swift"
+            timestampString = "479425600.689474"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
-            landmarkName = "viewDidLoad()"
+            startingLineNumber = "192"
+            endingLineNumber = "192"
+            landmarkName = "stringForTaskDate(_:)"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "SampleTaskManagerSwift/Controller/MSGCreateAndEditViewController.swift"
+            timestampString = "479425600.689474"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "clearButtonSelected(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

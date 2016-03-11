@@ -18,11 +18,14 @@ enum TaskTextFieldTags: Int {
 class MSGCreateAndEditViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIScrollViewDelegate {
     
     // MARK: - Constants
-    private static let noSegmentSelected = -1
+    private static let taskStatusSegmentedControlReset = 0
     
     // MARK: - Stored Properties
     var taskToEdit: MSGTask?
     weak var activeField: AnyObject?
+    
+    private var localDueDate: NSDate?
+    private var localStatusDate: NSDate?
     
     // MARK: - Outlets
     @IBOutlet weak var scrollView: UIScrollView!
@@ -57,11 +60,21 @@ class MSGCreateAndEditViewController: UIViewController, UITextFieldDelegate, UIT
     
     // MARK: - Target / Action Methods
     @IBAction func clearButtonSelected(sender: UIBarButtonItem) {
+        
+        taskTitleTextField.text = taskToEdit?.title // Maintains the title from an existing Task
+        taskDescriptionTextView.text = nil
+        
+        localDueDate = nil
+        taskDueDateTextField.text = stringForTaskDate(localDueDate)
+        
+        taskStatusSegmentedControl.selectedSegmentIndex = MSGCreateAndEditViewController.taskStatusSegmentedControlReset
+        
+        localStatusDate = NSDate()
+        taskStatusDateTextField.text = stringForTaskDate(localStatusDate)
     }
     
     @IBAction func applyButtonSelected(sender: AnyObject) {
-// TODO:
-        // Verify valid MSGTask
+// TODO: // Verify valid MSGTask
         navigationController?.popViewControllerAnimated(true)
     }
     
@@ -69,6 +82,10 @@ class MSGCreateAndEditViewController: UIViewController, UITextFieldDelegate, UIT
     // Dismiss the Keyboard at the appropriate time
     func scrollViewWillBeginDragging(scrollView: UIScrollView) {
         view.endEditing(true)
+    }
+    
+    @IBAction func statusTypeSegmentedControlSelected() {
+        taskStatusDateTextField.text = stringForTaskDate(NSDate())
     }
     
     // MARK: - Text Field Delegate Methods
@@ -79,7 +96,7 @@ class MSGCreateAndEditViewController: UIViewController, UITextFieldDelegate, UIT
     }
     
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
-// TODO:
+// TODO: // Display DatePicker for DueDate
         switch textField.tag {
         case TaskTextFieldTags.dueDateTextFieldTag.rawValue,
              TaskTextFieldTags.statusTextFieldTag.rawValue:
@@ -158,13 +175,20 @@ class MSGCreateAndEditViewController: UIViewController, UITextFieldDelegate, UIT
     
     // MARK: - Private Utility Methods
     private func populateUI() {
-// TODO:
+
         taskTitleTextField.text = taskToEdit?.title
         taskDescriptionTextView.text = taskToEdit?.taskDescription
-        taskDueDateTextField.text = (taskToEdit?.dueDate != nil) ?
-            NSDateFormatter.localizedStringFromDate(taskToEdit!.dueDate!, dateStyle: .ShortStyle, timeStyle: .ShortStyle) : nil
-        taskStatusSegmentedControl.selectedSegmentIndex = taskToEdit?.status.rawValue ?? MSGCreateAndEditViewController.noSegmentSelected
-        taskStatusDateTextField.text = (taskToEdit?.statusDate != nil) ?
-            NSDateFormatter.localizedStringFromDate(taskToEdit!.statusDate, dateStyle: .ShortStyle, timeStyle: .ShortStyle) : nil
+        
+        localDueDate = taskToEdit?.dueDate
+        taskDueDateTextField.text =  stringForTaskDate(localDueDate)
+        
+        taskStatusSegmentedControl.selectedSegmentIndex = taskToEdit?.status.rawValue ?? MSGCreateAndEditViewController.taskStatusSegmentedControlReset
+
+        localStatusDate = taskToEdit?.statusDate ?? NSDate()
+        taskStatusDateTextField.text = stringForTaskDate(localStatusDate)
+    }
+    
+    private func stringForTaskDate(taskDate: NSDate?) -> String? {
+        return (taskDate != nil) ? NSDateFormatter.localizedStringFromDate(taskDate!, dateStyle: .ShortStyle, timeStyle: .ShortStyle) : nil
     }
 }
