@@ -28,15 +28,26 @@ class MSGTaskListTableViewController: UITableViewController {
     private static let taskCellIdentifier = "MSGTaskCell"
     private static let updateTaskSegueIdentifier = "UpdateTaskSegue"
     private static let taskTableCellHeight: CGFloat = 130.0
+    private static let sortSegmentedControlFontSize: CGFloat = 12.0
+    private static let noSegmentSelected = -1
     
     // MARK: - Stored  Properties
     // Restore the task list from persistant storage, or an empty task list if none was found
     private let appTaskList = MSGTaskList.restoreTaskList()
     
+    // MARK: - Outlets
+    @IBOutlet weak var sortOrderSegmentedControl: UISegmentedControl!
+    
     // MARK: - View Controller Delegate Methods
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        // Configure the sortOrderSegmentedControl
+        sortOrderSegmentedControl.setTitleTextAttributes([NSFontAttributeName : UIFont(name: "Arial", size: MSGTaskListTableViewController.sortSegmentedControlFontSize)!], forState: .Normal)
+        sortOrderSegmentedControl.hidden = true
+        
+// TODO: // Swipe to Delete
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
@@ -65,7 +76,6 @@ class MSGTaskListTableViewController: UITableViewController {
         
         let appTask = appTaskList.taskList[indexPath.row]
         
-// TODO:
         // Configure the cell...
         taskCell.taskTitleLabel.text = "Title: \(appTask.title)"
         
@@ -106,5 +116,18 @@ class MSGTaskListTableViewController: UITableViewController {
             default: break
             }
         }
+    }
+    
+    // MARK: - Target / Action
+    @IBAction func sortBarButtonItemSelected(sender: UIBarButtonItem) {
+        sortOrderSegmentedControl.selectedSegmentIndex = MSGTaskListTableViewController.noSegmentSelected
+        sortOrderSegmentedControl.hidden = false
+    }
+    
+    @IBAction func sortSegmentedControlSelected(sender: UISegmentedControl) {
+        appTaskList.taskListOrder = TaskOrder(rawValue: sender.selectedSegmentIndex)!
+        sortOrderSegmentedControl.hidden = true
+        appTaskList.sortTaskList()
+        tableView.reloadData()
     }
 }

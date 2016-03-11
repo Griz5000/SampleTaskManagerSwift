@@ -83,6 +83,25 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="Zuq-T6-mg6">
+                        <nil key="title"/>
+                        <barButtonItem key="leftBarButtonItem" title="Sort" id="4DQ-Ti-iuU">
+                            <connections>
+                                <action selector="sortBarButtonItemSelected:" destination="WYF-aM-c5I" id="4bE-wM-Oco"/>
+                            </connections>
+                        </barButtonItem>
+                        <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="gYk-zM-ir1">
+                            <rect key="frame" x="129" y="7" width="343" height="30"/>
+                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <segments>
+                                <segment title="Title"/>
+                                <segment title="Due Date"/>
+                                <segment title="Status"/>
+                                <segment title="Status Date"/>
+                            </segments>
+                            <connections>
+                                <action selector="sortSegmentedControlSelected:" destination="WYF-aM-c5I" eventType="valueChanged" id="2qQ-ji-iRT"/>
+                            </connections>
+                        </segmentedControl>
                         <barButtonItem key="rightBarButtonItem" title="New" id="ACR-PH-vtn">
                             <connections>
                                 <segue destination="ywX-AT-Qdr" kind="show" identifier="NewTaskSegue" id="hxE-qg-N6P"/>
@@ -90,6 +109,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="sortOrderSegmentedControl" destination="gYk-zM-ir1" id="cFd-VJ-DpV"/>
                         <segue destination="ywX-AT-Qdr" kind="show" identifier="UpdateTaskSegue" id="0wV-0J-HCV"/>
                     </connections>
                 </tableViewController>
@@ -145,7 +165,7 @@
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="UPb-8T-RCW">
+                                            <textField opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="UPb-8T-RCW">
                                                 <rect key="frame" x="150" y="193" width="430" height="23"/>
                                                 <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -153,7 +173,7 @@
                                                     <outlet property="delegate" destination="ywX-AT-Qdr" id="R7K-Oe-aXP"/>
                                                 </connections>
                                             </textField>
-                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="eFf-CN-Sbb">
+                                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" translatesAutoresizingMaskIntoConstraints="NO" id="eFf-CN-Sbb">
                                                 <rect key="frame" x="150" y="224" width="430" height="29"/>
                                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <segments>
@@ -162,7 +182,7 @@
                                                     <segment title="Canceled"/>
                                                 </segments>
                                             </segmentedControl>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="N0p-FE-MTP">
+                                            <textField opaque="NO" clipsSubviews="YES" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="N0p-FE-MTP">
                                                 <rect key="frame" x="150" y="260" width="430" height="23"/>
                                                 <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="17"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -192,7 +212,7 @@
                                                     <constraint firstAttribute="height" constant="128" id="vDl-ai-rYP"/>
                                                 </constraints>
                                             </view>
-                                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rv3-lb-vGC">
+                                            <textField opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" textAlignment="natural" clearsOnBeginEditing="YES" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rv3-lb-vGC">
                                                 <rect key="frame" x="150" y="20" width="430" height="29"/>
                                                 <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="22"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -298,6 +318,11 @@
                     </navigationItem>
                     <connections>
                         <outlet property="scrollView" destination="Vmi-o4-5jh" id="u9I-p6-Led"/>
+                        <outlet property="taskDescriptionTextView" destination="YKy-VM-QHC" id="cql-XZ-YsR"/>
+                        <outlet property="taskDueDateTextField" destination="UPb-8T-RCW" id="fbS-rN-9Jg"/>
+                        <outlet property="taskStatusDateTextField" destination="N0p-FE-MTP" id="C1b-ed-2Bo"/>
+                        <outlet property="taskStatusSegmentedControl" destination="eFf-CN-Sbb" id="ZVR-xj-oXv"/>
+                        <outlet property="taskTitleTextField" destination="rv3-lb-vGC" id="qN3-fl-UEy"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iQK-GL-lN2" userLabel="First Responder" sceneMemberID="firstResponder"/>

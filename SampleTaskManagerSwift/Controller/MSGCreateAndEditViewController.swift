@@ -8,7 +8,17 @@
 
 import UIKit
 
+// MARK: - Types
+enum TaskTextFieldTags: Int {
+    case titleTextFieldTag = 1
+    case dueDateTextFieldTag
+    case statusTextFieldTag
+}
+
 class MSGCreateAndEditViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIScrollViewDelegate {
+    
+    // MARK: - Constants
+    private static let noSegmentSelected = -1
     
     // MARK: - Stored Properties
     var taskToEdit: MSGTask?
@@ -17,14 +27,23 @@ class MSGCreateAndEditViewController: UIViewController, UITextFieldDelegate, UIT
     // MARK: - Outlets
     @IBOutlet weak var scrollView: UIScrollView!
     
+    @IBOutlet weak var taskTitleTextField: UITextField!
+    @IBOutlet weak var taskDescriptionTextView: UITextView!
+    @IBOutlet weak var taskDueDateTextField: UITextField!
+    @IBOutlet weak var taskStatusSegmentedControl: UISegmentedControl!
+    @IBOutlet weak var taskStatusDateTextField: UITextField!
+    
     // MARK: - View Controller Delegate Methods
     override func viewDidLoad() {
         super.viewDidLoad()
         
-// TODO: Populate the Create/Edit View Controller
-        
         // Do any additional setup after loading the view.
         registerForKeyboardNotifications()
+        
+        taskTitleTextField.enabled = (taskToEdit == nil) // Editing the title of an existing task is diallowed
+ 
+        // Populate the Create/Edit View Controller
+        populateUI()
     }
 
     override func didReceiveMemoryWarning() {
@@ -57,6 +76,16 @@ class MSGCreateAndEditViewController: UIViewController, UITextFieldDelegate, UIT
         textField.resignFirstResponder()
         
         return true
+    }
+    
+    func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
+// TODO:
+        switch textField.tag {
+        case TaskTextFieldTags.dueDateTextFieldTag.rawValue,
+             TaskTextFieldTags.statusTextFieldTag.rawValue:
+            return false
+        default: return true
+        }
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {
@@ -125,5 +154,17 @@ class MSGCreateAndEditViewController: UIViewController, UITextFieldDelegate, UIT
         
         scrollView.contentInset = contentInsets
         scrollView.scrollIndicatorInsets = contentInsets
+    }
+    
+    // MARK: - Private Utility Methods
+    private func populateUI() {
+// TODO:
+        taskTitleTextField.text = taskToEdit?.title
+        taskDescriptionTextView.text = taskToEdit?.taskDescription
+        taskDueDateTextField.text = (taskToEdit?.dueDate != nil) ?
+            NSDateFormatter.localizedStringFromDate(taskToEdit!.dueDate!, dateStyle: .ShortStyle, timeStyle: .ShortStyle) : nil
+        taskStatusSegmentedControl.selectedSegmentIndex = taskToEdit?.status.rawValue ?? MSGCreateAndEditViewController.noSegmentSelected
+        taskStatusDateTextField.text = (taskToEdit?.statusDate != nil) ?
+            NSDateFormatter.localizedStringFromDate(taskToEdit!.statusDate, dateStyle: .ShortStyle, timeStyle: .ShortStyle) : nil
     }
 }

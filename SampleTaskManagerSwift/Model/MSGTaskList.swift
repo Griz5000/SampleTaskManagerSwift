@@ -8,19 +8,20 @@
 
 import Foundation
 
+// MARK: - Types
+enum TaskOrder: Int {
+    case Title
+    case DueDate
+    case Status
+    case StatusDate
+}
+
 /**
  Model for the SampleTaskManagerSwift application
  */
 class MSGTaskList: NSObject, NSCoding {
     
     // MARK: - Types
-    enum TaskOrder: Int {
-        case Title
-        case DueDate
-        case Status
-        case StatusDate
-    }
-    
     struct MSGTaskListPropertyKey {
         static let taskListKey = "TaskList"
         static let taskListOrderKey = "TaskListOrder"
@@ -64,10 +65,21 @@ class MSGTaskList: NSObject, NSCoding {
     }
     
     /**
-    Replace the `withTask` in the `taskList`
+     Replace the `withTask` in the `taskList`
+     
+     - Parameter withTask: Task data supplied by the UI
+     */
+    func sortTaskList() {
+        sortTasksInList()
+        
+        MSGTaskListStore.sharedInstance.storeTaskList(self)
+    }
     
-    - Parameter withTask: Task data supplied by the UI
-    */
+    /**
+     Replace the `withTask` in the `taskList`
+     
+     - Parameter withTask: Task data supplied by the UI
+     */
     func updateTaskList(withTask: MSGTask) {
         if !taskList.filter( {$0 == withTask} ).isEmpty {
             removeTask(withTask)
@@ -75,8 +87,6 @@ class MSGTaskList: NSObject, NSCoding {
         
         addTask(withTask)
         sortTaskList()
-        
-        MSGTaskListStore.sharedInstance.storeTaskList(self)
     }
     
     /**
@@ -88,12 +98,10 @@ class MSGTaskList: NSObject, NSCoding {
         
         removeTask(taskToRemove)
         sortTaskList()
-        
-        MSGTaskListStore.sharedInstance.storeTaskList(self)
     }
 
     // MARK: - Private Utility Methods
-    private func sortTaskList() {
+    private func sortTasksInList() {
 
         switch taskListOrder {
         case .Title:
