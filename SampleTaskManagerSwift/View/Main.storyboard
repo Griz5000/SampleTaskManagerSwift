@@ -326,11 +326,49 @@
                         <outlet property="taskStatusDateTextField" destination="N0p-FE-MTP" id="C1b-ed-2Bo"/>
                         <outlet property="taskStatusSegmentedControl" destination="eFf-CN-Sbb" id="ZVR-xj-oXv"/>
                         <outlet property="taskTitleTextField" destination="rv3-lb-vGC" id="qN3-fl-UEy"/>
+                        <segue destination="6jZ-l0-RNT" kind="popoverPresentation" identifier="DatePickerSegue" popoverAnchorView="UPb-8T-RCW" id="aOv-A2-ITC">
+                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
+                        </segue>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iQK-GL-lN2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2054" y="528"/>
+        </scene>
+        <!--Date Picker View Controller-->
+        <scene sceneID="0yD-39-CMN">
+            <objects>
+                <viewController id="6jZ-l0-RNT" customClass="MSGDatePickerViewController" customModule="SampleTaskManagerSwift" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Lpp-GP-ZlJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="5sL-7M-zsF"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="H3x-jb-73J">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="5Sy-3U-OaO">
+                                <rect key="frame" x="20" y="20" width="560" height="580"/>
+                                <date key="date" timeIntervalSinceReferenceDate="479431782.01046002">
+                                    <!--2016-03-11 23:29:42 +0000-->
+                                </date>
+                            </datePicker>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="5Sy-3U-OaO" secondAttribute="trailing" id="D76-3B-VLg"/>
+                            <constraint firstItem="5Sy-3U-OaO" firstAttribute="top" secondItem="Lpp-GP-ZlJ" secondAttribute="bottom" id="KY4-qU-Tz5"/>
+                            <constraint firstItem="5Sy-3U-OaO" firstAttribute="leading" secondItem="H3x-jb-73J" secondAttribute="leadingMargin" id="Nes-jm-vko"/>
+                            <constraint firstItem="5sL-7M-zsF" firstAttribute="top" secondItem="5Sy-3U-OaO" secondAttribute="bottom" id="g8h-xJ-DL2"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="taskDatePicker" destination="5Sy-3U-OaO" id="Ngm-M4-utn"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="0bT-ej-RFX" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2784" y="528"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="Zw6-r6-jLz">

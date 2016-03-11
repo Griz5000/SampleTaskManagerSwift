@@ -15,11 +15,16 @@ enum TaskTextFieldTags: Int {
     case statusTextFieldTag
 }
 
-class MSGCreateAndEditViewController: UIViewController, UITextFieldDelegate, UITextViewDelegate, UIScrollViewDelegate {
+class MSGCreateAndEditViewController: UIViewController,
+                                        UITextFieldDelegate,
+                                        UITextViewDelegate,
+                                        UIScrollViewDelegate,
+                                        UIPopoverPresentationControllerDelegate {
     
     // MARK: - Constants
     private static let taskStatusSegmentedControlReset = 0
-    
+    private static let datePickerSegueIdentifier = "DatePickerSegue"
+
     // MARK: - Stored Properties
     var taskToEdit: MSGTask?
     weak var activeField: AnyObject?
@@ -98,10 +103,13 @@ class MSGCreateAndEditViewController: UIViewController, UITextFieldDelegate, UIT
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
 // TODO: // Display DatePicker for DueDate
         switch textField.tag {
-        case TaskTextFieldTags.dueDateTextFieldTag.rawValue,
-             TaskTextFieldTags.statusTextFieldTag.rawValue:
+        case TaskTextFieldTags.dueDateTextFieldTag.rawValue:
+            performSegueWithIdentifier(MSGCreateAndEditViewController.datePickerSegueIdentifier, sender: textField.tag)
+            return false
+        case TaskTextFieldTags.statusTextFieldTag.rawValue:
             return false
         default: return true
+            
         }
     }
     
@@ -173,6 +181,21 @@ class MSGCreateAndEditViewController: UIViewController, UITextFieldDelegate, UIT
         scrollView.scrollIndicatorInsets = contentInsets
     }
     
+    // MARK: - Navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        if let segueIdentifier = segue.identifier {
+            switch segueIdentifier {
+            case MSGCreateAndEditViewController.datePickerSegueIdentifier:
+                let datePickerVC = segue.destinationViewController as! MSGDatePickerViewController
+                datePickerVC.dateType = sender as! Int?
+                if let pickerPopoverPresentationViewController = datePickerVC.popoverPresentationController {
+                    pickerPopoverPresentationViewController.delegate = self
+                }
+            default: break
+            }
+        }
+    }
+    
     // MARK: - Private Utility Methods
     private func populateUI() {
 
@@ -190,5 +213,9 @@ class MSGCreateAndEditViewController: UIViewController, UITextFieldDelegate, UIT
     
     private func stringForTaskDate(taskDate: NSDate?) -> String? {
         return (taskDate != nil) ? NSDateFormatter.localizedStringFromDate(taskDate!, dateStyle: .ShortStyle, timeStyle: .ShortStyle) : nil
+    }
+    
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.None
     }
 }
