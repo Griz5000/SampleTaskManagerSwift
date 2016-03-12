@@ -8,20 +8,26 @@
 
 import UIKit
 
+protocol DateReportingDelegate {
+    func reportSelectedDate(selectedDate: NSDate, dateType: Int)
+}
+
 class MSGDatePickerViewController: UIViewController {
 
     // MARK: - Stored  Properties
     var dateType: Int?
     
+    var delegate: DateReportingDelegate?
+    
     // MARK: - Outlets
     @IBOutlet weak var taskDatePicker: UIDatePicker!
-    
     
     // MARK: - View Controller Delegate Methods
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        taskDatePicker.date = NSDate()
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,9 +35,15 @@ class MSGDatePickerViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        delegate?.reportSelectedDate(taskDatePicker.date, dateType: dateType!)
+        
+        super.viewWillDisappear(animated)
+    }
+    
     override  var preferredContentSize: CGSize {
-        get {                           // presentingViewController - which ever view controller is presenting you
-                                        // assures that the bounds are set
+        get {                           // presentingViewController - whichever view controller is presenting you
+                                        // checking for != nill assures that the bounds are set
             if taskDatePicker != nil && presentingViewController != nil {
                 return taskDatePicker.sizeThatFits(presentingViewController!.view.bounds.size)
             } else {

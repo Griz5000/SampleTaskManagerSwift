@@ -19,7 +19,8 @@ class MSGCreateAndEditViewController: UIViewController,
                                         UITextFieldDelegate,
                                         UITextViewDelegate,
                                         UIScrollViewDelegate,
-                                        UIPopoverPresentationControllerDelegate {
+                                        UIPopoverPresentationControllerDelegate,
+                                        DateReportingDelegate {
     
     // MARK: - Constants
     private static let taskStatusSegmentedControlReset = 0
@@ -188,12 +189,19 @@ class MSGCreateAndEditViewController: UIViewController,
             case MSGCreateAndEditViewController.datePickerSegueIdentifier:
                 let datePickerVC = segue.destinationViewController as! MSGDatePickerViewController
                 datePickerVC.dateType = sender as! Int?
+                datePickerVC.delegate = self
                 if let pickerPopoverPresentationViewController = datePickerVC.popoverPresentationController {
                     pickerPopoverPresentationViewController.delegate = self
                 }
             default: break
             }
         }
+    }
+    
+    // MARK: - DateReportingDelegate Method
+    func reportSelectedDate(selectedDate: NSDate, dateType: Int) {
+        print("Date: \(stringForTaskDate(selectedDate)!)")
+        print("DateType: \(dateType)")
     }
     
     // MARK: - Private Utility Methods
