@@ -52,7 +52,7 @@ class MSGCreateAndEditViewController: UIViewController,
         taskTitleTextField.enabled = (taskToEdit == nil) // Editing the title of an existing task is diallowed
  
         // Populate the Create/Edit View Controller
-        populateUI()
+        updateUI(taskToEdit)
     }
 
     override func didReceiveMemoryWarning() {
@@ -67,20 +67,12 @@ class MSGCreateAndEditViewController: UIViewController,
     // MARK: - Target / Action Methods
     @IBAction func clearButtonSelected(sender: UIBarButtonItem) {
         
-        taskTitleTextField.text = taskToEdit?.title // Maintains the title from an existing Task
-        taskDescriptionTextView.text = nil
-        
-        localDueDate = nil
-        taskDueDateTextField.text = stringForTaskDate(localDueDate)
-        
-        taskStatusSegmentedControl.selectedSegmentIndex = MSGCreateAndEditViewController.taskStatusSegmentedControlReset
-        
-        localStatusDate = NSDate()
-        taskStatusDateTextField.text = stringForTaskDate(localStatusDate)
+        updateUI(nil)
     }
     
     @IBAction func applyButtonSelected(sender: AnyObject) {
 // TODO: // Verify valid MSGTask
+        // Return the MSGTask
         navigationController?.popViewControllerAnimated(true)
     }
     
@@ -102,7 +94,6 @@ class MSGCreateAndEditViewController: UIViewController,
     }
     
     func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
-// TODO: // Display DatePicker for DueDate
         switch textField.tag {
         case TaskTextFieldTags.dueDateTextFieldTag.rawValue:
             performSegueWithIdentifier(MSGCreateAndEditViewController.datePickerSegueIdentifier, sender: textField.tag)
@@ -199,24 +190,26 @@ class MSGCreateAndEditViewController: UIViewController,
     }
     
     // MARK: - DateReportingDelegate Method
-    func reportSelectedDate(selectedDate: NSDate, dateType: Int) {
+    func reportSelectedDate(selectedDate: NSDate, dateType: Int?) {
+// TODO: Save the date (as Due Date in this case)
         print("Date: \(stringForTaskDate(selectedDate)!)")
-        print("DateType: \(dateType)")
+        print("DateType: \(dateType!)")
     }
     
     // MARK: - Private Utility Methods
-    private func populateUI() {
-
-        taskTitleTextField.text = taskToEdit?.title
-        taskDescriptionTextView.text = taskToEdit?.taskDescription
+    private func updateUI(thisTask: MSGTask?) {
         
-        localDueDate = taskToEdit?.dueDate
-        taskDueDateTextField.text =  stringForTaskDate(localDueDate)
+        taskTitleTextField.text = taskToEdit?.title // Use taskToEdit not thisTask, Maintains the title from an existing task
+        taskDescriptionTextView.text = thisTask?.taskDescription
         
-        taskStatusSegmentedControl.selectedSegmentIndex = taskToEdit?.status.rawValue ?? MSGCreateAndEditViewController.taskStatusSegmentedControlReset
-
-        localStatusDate = taskToEdit?.statusDate ?? NSDate()
+        localDueDate = thisTask?.dueDate
+        taskDueDateTextField.text = stringForTaskDate(localDueDate)
+        
+        taskStatusSegmentedControl.selectedSegmentIndex = thisTask?.status.rawValue ?? MSGCreateAndEditViewController.taskStatusSegmentedControlReset
+        
+        localStatusDate = thisTask?.statusDate ?? NSDate()
         taskStatusDateTextField.text = stringForTaskDate(localStatusDate)
+
     }
     
     private func stringForTaskDate(taskDate: NSDate?) -> String? {

@@ -9,7 +9,7 @@
 import UIKit
 
 protocol DateReportingDelegate {
-    func reportSelectedDate(selectedDate: NSDate, dateType: Int)
+    func reportSelectedDate(selectedDate: NSDate, dateType: Int?)
 }
 
 class MSGDatePickerViewController: UIViewController {
@@ -27,6 +27,8 @@ class MSGDatePickerViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        
+        // Initialize the date in the UIDatePicker
         taskDatePicker.date = NSDate()
     }
 
@@ -36,7 +38,9 @@ class MSGDatePickerViewController: UIViewController {
     }
     
     override func viewWillDisappear(animated: Bool) {
-        delegate?.reportSelectedDate(taskDatePicker.date, dateType: dateType!)
+        
+        // Retun the selected date and dateType (i.e. Due Date or Status Date, just return input value)
+        delegate?.reportSelectedDate(taskDatePicker.date, dateType: dateType)
         
         super.viewWillDisappear(animated)
     }
