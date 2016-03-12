@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "SampleTaskManagerSwift/Controller/MSGCreateAndEditViewController.swift"
-            timestampString = "479508483.899877"
+            timestampString = "479511339.698059"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "277"
-            endingLineNumber = "277"
-            landmarkName = "reportUpdatedTask()"
+            startingLineNumber = "238"
+            endingLineNumber = "238"
+            landmarkName = "validateMSGTask()"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

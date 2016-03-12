@@ -46,14 +46,6 @@ class MSGTaskListTableViewController: UITableViewController, UpdatedTaskReportin
         // Configure the sortOrderSegmentedControl
         sortOrderSegmentedControl.setTitleTextAttributes([NSFontAttributeName : UIFont(name: "Arial", size: MSGTaskListTableViewController.sortSegmentedControlFontSize)!], forState: .Normal)
         sortOrderSegmentedControl.hidden = true
-        
-// TODO: // Swipe to Delete
-        
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-        // self.navigationItem.rightBarButtonItem = self.editButtonItem()
     }
 
     override func didReceiveMemoryWarning() {
@@ -103,6 +95,30 @@ class MSGTaskListTableViewController: UITableViewController, UpdatedTaskReportin
         let selectedTask = appTaskList.taskList[indexPath.row]
         performSegueWithIdentifier(MSGTaskListTableViewController.updateTaskSegueIdentifier, sender: selectedTask)
     }
+    
+    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
+        return true
+    }
+    
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        // Intentionally left empty - SO post -- http://stackoverflow.com/questions/24103069/swift-add-swipe-to-delete-tableviewcell
+    }
+    
+    override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
+        
+        let deleteAction = UITableViewRowAction(style: .Default, title: "Delete") {action in
+            // Handle delete
+            self.appTaskList.removeTaskFromList(self.appTaskList.taskList[indexPath.row])
+            self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
+        }
+        
+        let editAction = UITableViewRowAction(style: .Normal, title: "Edit") {action in
+            //handle edit
+        }
+        
+        return [deleteAction, editAction]
+    }
+
     
     // MARK: - Navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
