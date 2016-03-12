@@ -191,9 +191,17 @@ class MSGCreateAndEditViewController: UIViewController,
     
     // MARK: - DateReportingDelegate Method
     func reportSelectedDate(selectedDate: NSDate, dateType: Int?) {
-// TODO: Save the date (as Due Date in this case)
-        print("Date: \(stringForTaskDate(selectedDate)!)")
-        print("DateType: \(dateType!)")
+        
+        if dateType != nil {
+            if let thisTextFieldTag = TaskTextFieldTags(rawValue: dateType!) {
+                switch thisTextFieldTag {
+                case .dueDateTextFieldTag:
+                    localDueDate = selectedDate
+                    taskDueDateTextField.text = stringForTaskDate(localDueDate)
+                default: break
+                }
+            }
+        }
     }
     
     // MARK: - Private Utility Methods
