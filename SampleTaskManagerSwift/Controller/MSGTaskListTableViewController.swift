@@ -22,10 +22,11 @@ extension MSGTask.TaskStatus {
     } 
 }
 
-class MSGTaskListTableViewController: UITableViewController {
+class MSGTaskListTableViewController: UITableViewController, UpdatedTaskReportingDelegate {
 
     // MARK: - Constants
     private static let taskCellIdentifier = "MSGTaskCell"
+    private static let newTaskSegueIdentifier = "NewTaskSegue"
     private static let updateTaskSegueIdentifier = "UpdateTaskSegue"
     private static let taskTableCellHeight: CGFloat = 130.0
     private static let sortSegmentedControlFontSize: CGFloat = 12.0
@@ -107,11 +108,16 @@ class MSGTaskListTableViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         if let segueIdentifier = segue.identifier {
             switch segueIdentifier {
-            case MSGTaskListTableViewController.updateTaskSegueIdentifier:
+            case MSGTaskListTableViewController.updateTaskSegueIdentifier,
+                 MSGTaskListTableViewController.newTaskSegueIdentifier:
+                
+                let appTaskDetailsViewController = segue.destinationViewController as! MSGCreateAndEditViewController
+                appTaskDetailsViewController.delegate = self
+                
                 if let taskToEdit = sender as? MSGTask {
-                    let appTaskDetailsViewController = segue.destinationViewController as! MSGCreateAndEditViewController
-                        appTaskDetailsViewController.taskToEdit = taskToEdit
+                    appTaskDetailsViewController.taskToEdit = taskToEdit
                 }
+                
             default: break
             }
         }
@@ -124,9 +130,15 @@ class MSGTaskListTableViewController: UITableViewController {
     }
     
     @IBAction func sortSegmentedControlSelected(sender: UISegmentedControl) {
-        appTaskList.taskListOrder = TaskOrder(rawValue: sender.selectedSegmentIndex)!
+        appTaskList.taskListOrder = MSGTaskList.TaskOrder(rawValue: sender.selectedSegmentIndex)!
         sortOrderSegmentedControl.hidden = true
         appTaskList.sortTaskList()
+        tableView.reloadData()
+    }
+    
+    // MARK: - UpdatedTaskReportingDelegate Method
+    func reportUpdatedTaskToDelegate(updatedTask: MSGTask) {
+        appTaskList.updateTaskList(updatedTask)
         tableView.reloadData()
     }
 }

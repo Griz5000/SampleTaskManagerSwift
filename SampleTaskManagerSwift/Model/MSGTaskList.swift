@@ -8,20 +8,19 @@
 
 import Foundation
 
-// MARK: - Types
-enum TaskOrder: Int {
-    case Title
-    case DueDate
-    case Status
-    case StatusDate
-}
-
 /**
  Model for the SampleTaskManagerSwift application
  */
 class MSGTaskList: NSObject, NSCoding {
     
     // MARK: - Types
+    enum TaskOrder: Int {
+        case Title
+        case DueDate
+        case Status
+        case StatusDate
+    }
+    
     struct MSGTaskListPropertyKey {
         static let taskListKey = "TaskList"
         static let taskListOrderKey = "TaskListOrder"

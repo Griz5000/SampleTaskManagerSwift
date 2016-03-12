@@ -27,15 +27,10 @@ class MSGTaskListStore {
     
     // MARK: - Public API
     func storeTaskList(taskListToStore: MSGTaskList) {
-        let isSuccessfulSave = NSKeyedArchiver.archiveRootObject(taskListToStore,
-            toFile: MSGTaskListStore.archiveURL.path!)
-        
-        print("Archiving tasks was \(isSuccessfulSave ? "True" : "False")")
-
+        NSKeyedArchiver.archiveRootObject(taskListToStore, toFile: MSGTaskListStore.archiveURL.path!)
     }
     
     func retrieveTaskList() -> MSGTaskList? {
-        
         return NSKeyedUnarchiver.unarchiveObjectWithFile(MSGTaskListStore.archiveURL.path!) as? MSGTaskList
     }
 }

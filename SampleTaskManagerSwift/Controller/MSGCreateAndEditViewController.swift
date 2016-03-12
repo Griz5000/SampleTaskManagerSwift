@@ -8,11 +8,8 @@
 
 import UIKit
 
-// MARK: - Types
-enum TaskTextFieldTags: Int {
-    case titleTextFieldTag = 1
-    case dueDateTextFieldTag
-    case statusTextFieldTag
+protocol UpdatedTaskReportingDelegate {
+    func reportUpdatedTaskToDelegate(updatedTask: MSGTask)
 }
 
 class MSGCreateAndEditViewController: UIViewController,
@@ -22,8 +19,15 @@ class MSGCreateAndEditViewController: UIViewController,
                                         UIPopoverPresentationControllerDelegate,
                                         DateReportingDelegate {
     
+    // MARK: - Types
+    enum TaskTextFieldTags: Int {
+        case titleTextFieldTag = 1
+        case dueDateTextFieldTag
+        case statusTextFieldTag
+    }
+
     // MARK: - Constants
-    private static let taskStatusSegmentedControlReset = 0
+    private static let taskStatusSegmentedControlReset = MSGTask.TaskStatus.New.rawValue
     private static let datePickerSegueIdentifier = "DatePickerSegue"
 
     // MARK: - Stored Properties
@@ -32,6 +36,8 @@ class MSGCreateAndEditViewController: UIViewController,
     
     private var localDueDate: NSDate?
     private var localStatusDate: NSDate?
+    
+    var delegate:  UpdatedTaskReportingDelegate?
     
     // MARK: - Outlets
     @IBOutlet weak var scrollView: UIScrollView!
@@ -71,19 +77,18 @@ class MSGCreateAndEditViewController: UIViewController,
     }
     
     @IBAction func applyButtonSelected(sender: AnyObject) {
-// TODO: // Verify valid MSGTask
-        // Return the MSGTask
-        navigationController?.popViewControllerAnimated(true)
+        validateMSGTask()
+    }
+    
+    @IBAction func statusTypeSegmentedControlSelected() {
+        localStatusDate = NSDate()
+        taskStatusDateTextField.text = stringForTaskDate(localStatusDate)
     }
     
     // MARK: - Scroll View Delegate
     // Dismiss the Keyboard at the appropriate time
     func scrollViewWillBeginDragging(scrollView: UIScrollView) {
         view.endEditing(true)
-    }
-    
-    @IBAction func statusTypeSegmentedControlSelected() {
-        taskStatusDateTextField.text = stringForTaskDate(NSDate())
     }
     
     // MARK: - Text Field Delegate Methods
@@ -189,6 +194,11 @@ class MSGCreateAndEditViewController: UIViewController,
         }
     }
     
+    // MARK: - Popover Presentation Controller Delegate Method
+    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
+        return UIModalPresentationStyle.None
+    }
+    
     // MARK: - DateReportingDelegate Method
     func reportSelectedDate(selectedDate: NSDate, dateType: Int?) {
         
@@ -224,7 +234,63 @@ class MSGCreateAndEditViewController: UIViewController,
         return (taskDate != nil) ? NSDateFormatter.localizedStringFromDate(taskDate!, dateStyle: .ShortStyle, timeStyle: .ShortStyle) : nil
     }
     
-    func adaptivePresentationStyleForPresentationController(controller: UIPresentationController) -> UIModalPresentationStyle {
-        return UIModalPresentationStyle.None
+    private func validateMSGTask() {
+        validateTaskTitle()
+    }
+    
+    private func validateTaskTitle() {
+        if let thisTaskTitle = taskTitleTextField.text {
+            if thisTaskTitle.isEmpty {
+                displayTaskTitleNilAlert()
+            } else { // Title is not empty
+                validateNewTaskDates()
+            }
+        } else { // taskTitleTextField is nil, not likely to happen, but this is an Optional
+            displayTaskTitleNilAlert()
+        }
+    }
+    
+    private func validateNewTaskDates() {
+        if taskStatusSegmentedControl.selectedSegmentIndex == MSGTask.TaskStatus.New.rawValue {
+            if localDueDate != nil {
+                if ((localStatusDate!.compare(localDueDate!) == .OrderedSame) ||
+                    (localStatusDate!.compare(localDueDate!) == .OrderedAscending)) {
+                    reportUpdatedTask()
+                } else {
+                    displayTaskDateOrderAlert()
+                }
+            } else { // Due date is not set
+                reportUpdatedTask()
+            }
+        } else { // This is not a New task
+            reportUpdatedTask()
+        }
+    }
+    
+    private func reportUpdatedTask() {
+        let updatedTask = MSGTask(newTaskTitle: taskTitleTextField.text!, // Previously validated that taskTitle is not nil/empty
+                                    newTaskTaskDescription: taskDescriptionTextView.text,
+                                    newTaskDueDate: localDueDate,
+                                    newTaskStatusInt: taskStatusSegmentedControl.selectedSegmentIndex,
+                                    newTaskStatusDate: localStatusDate!)
+        
+        delegate?.reportUpdatedTaskToDelegate(updatedTask)
+        navigationController?.popViewControllerAnimated(true)
+    }
+    
+    private func displayTaskTitleNilAlert() {
+        let titleNilAlert = UIAlertController(title: "Title Not Set", message: "Return wihout saving task?", preferredStyle: UIAlertControllerStyle.Alert)
+        titleNilAlert.addAction(UIAlertAction(title: "No", style: UIAlertActionStyle.Default, handler: nil))
+        titleNilAlert.addAction(UIAlertAction(title: "Yes", style: UIAlertActionStyle.Destructive, handler: { action in
+            self.navigationController?.popViewControllerAnimated(true) } ))
+        
+        presentViewController(titleNilAlert, animated: true, completion: nil)
+    }
+    
+    private func displayTaskDateOrderAlert() {
+        let taskDateOrderAlert = UIAlertController(title: "Invalid Due Date", message: "For New tasks, Due Date must be empty or later than Status Date", preferredStyle: UIAlertControllerStyle.Alert)
+        taskDateOrderAlert.addAction(UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: nil))
+        
+        presentViewController(taskDateOrderAlert, animated: true, completion: nil)
     }
 }

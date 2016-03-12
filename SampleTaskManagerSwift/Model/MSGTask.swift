@@ -83,23 +83,7 @@ class MSGTask: NSObject, NSCoding {
                   newTaskStatusDate: archivedStatusDate)
     }
     
-    // MARK: - Public API
-    func taskValid() -> Bool {
-        return dateSequenceValid()
     }
-    
-    // MARK: - Private Utility Methods
-    private func dueDateValid() -> Bool {
-        return (dueDate != nil)
-    }
-    
-    private func dateSequenceValid() -> Bool {
-        return dueDateValid() &&
-//            ((statusDate.compare(dueDate!) == .OrderedSame) ||
-//                (statusDate.compare(dueDate!) == .OrderedAscending))
-            statusDate.compare(dueDate!) == .OrderedAscending
-    }
-}
 
 // MARK: Operator Override
 func ==(left:MSGTask, right: MSGTask) -> Bool {
