@@ -64,9 +64,7 @@ class MSGTaskList: NSObject, NSCoding {
     }
     
     /**
-     Replace the `withTask` in the `taskList`
-     
-     - Parameter withTask: Task data supplied by the UI
+     Sorts the `taskList` and saves to persistent storage
      */
     func sortTaskList() {
         sortTasksInList()

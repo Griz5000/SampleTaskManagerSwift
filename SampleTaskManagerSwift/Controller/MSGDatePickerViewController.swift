@@ -8,10 +8,16 @@
 
 import UIKit
 
+/**
+ Mechanism to report the selected date to the calling View Controller
+ */
 protocol DateReportingDelegate {
     func reportSelectedDate(selectedDate: NSDate, dateType: Int?)
 }
 
+/**
+ Display a DatePicker.  This one happens to be in a PopoverPresentationController, based on the presenting segue.  This View Controller is resized using the `preferredContentSize` method.
+ */
 class MSGDatePickerViewController: UIViewController {
 
     // MARK: - Stored  Properties

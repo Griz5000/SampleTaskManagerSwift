@@ -8,6 +8,9 @@
 
 import UIKit
 
+/**
+ Add the stringRepresentation method to the MSGTask.TaskStatus enum
+ */
 extension MSGTask.TaskStatus {
     
     func stringRepresentation() -> String {
@@ -22,6 +25,9 @@ extension MSGTask.TaskStatus {
     } 
 }
 
+/**
+ Top level view controller for the SampleTaskManagerSwift App.  Consists of a TableViewController which displays a list of user defined tasks.  Tasks can be sorted by selecting the `Sort` button.  A new task is created by selecting the `New` button.  An existing task is modified by selecting the task from the list of tasks.
+ */
 class MSGTaskListTableViewController: UITableViewController, UpdatedTaskReportingDelegate {
 
     // MARK: - Constants
@@ -104,6 +110,7 @@ class MSGTaskListTableViewController: UITableViewController, UpdatedTaskReportin
         // Intentionally left empty - SO post -- http://stackoverflow.com/questions/24103069/swift-add-swipe-to-delete-tableviewcell
     }
     
+    // Add the Swipe-to-Delete functionality
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
         
         let deleteAction = UITableViewRowAction(style: .Default, title: "Delete") {action in

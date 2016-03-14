@@ -8,10 +8,16 @@
 
 import UIKit
 
+/**
+ Mechanism to provide the new or updated `taskToEdit` to the calling View Controller
+ */
 protocol UpdatedTaskReportingDelegate {
     func reportUpdatedTaskToDelegate(updatedTask: MSGTask)
 }
 
+/**
+ Edit the details of the `taskToEdit` task
+ */
 class MSGCreateAndEditViewController: UIViewController,
                                         UITextFieldDelegate,
                                         UITextViewDelegate,
