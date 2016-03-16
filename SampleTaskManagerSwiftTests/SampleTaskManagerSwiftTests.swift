@@ -14,6 +14,7 @@ class SampleTaskManagerSwiftTests: XCTestCase {
     let taskTitleForTest = "Michael's Task"
     let secondTaskTitleForTest = "John's Task"
     let thirdTaskTitleForTest = "Jacob's Task"
+    let taskTitleForBadStatus = "Rocky Mountain High"
     
     override func setUp() {
         super.setUp()
@@ -37,6 +38,20 @@ class SampleTaskManagerSwiftTests: XCTestCase {
         XCTAssertEqual(newTask.title, taskTitleForTest)
         XCTAssertEqual(newTask.status, MSGTask.TaskStatus.New)
         XCTAssertEqualWithAccuracy(nowDate.timeIntervalSinceReferenceDate, newTask.statusDate.timeIntervalSinceReferenceDate, accuracy: 0.001);
+    }
+    
+    func testCreateBadStatusTask() {
+        
+        // Given
+        let nowDate = NSDate()
+        let badStatus: Int = 13
+        
+        // When
+        let newTask = MSGTask(newTaskTitle: taskTitleForBadStatus, newTaskTaskDescription: nil, newTaskDueDate: nil, newTaskStatusInt: badStatus, newTaskStatusDate: nowDate)
+        
+        // Then
+        XCTAssertEqual(newTask.title, taskTitleForBadStatus)
+        XCTAssertEqual(newTask.status, MSGTask.TaskStatus.New)
     }
     
     func testAddTaskToList() {
