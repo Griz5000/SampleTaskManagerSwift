@@ -153,9 +153,8 @@ class MSGTaskListTableViewController: UITableViewController, UpdatedTaskReportin
     }
     
     @IBAction func sortSegmentedControlSelected(sender: UISegmentedControl) {
-        appTaskList.taskListOrder = MSGTaskList.TaskOrder(rawValue: sender.selectedSegmentIndex)!
+        appTaskList.taskListOrder = MSGTaskList.TaskOrder(rawValue: sender.selectedSegmentIndex)! // Automatically sorts the list
         sortOrderSegmentedControl.hidden = true
-        appTaskList.sortTaskList()
         tableView.reloadData()
     }
     

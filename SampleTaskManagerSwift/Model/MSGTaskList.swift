@@ -28,7 +28,11 @@ class MSGTaskList: NSObject, NSCoding {
     
     // MARK: - Stored Properties
     var taskList = [MSGTask]()
-    var taskListOrder: TaskOrder = .Title
+    var taskListOrder: TaskOrder = .Title {
+        didSet {
+            sortTaskList()
+        }
+    }
     
     // MARK: - Initializers
     override init() {
@@ -64,15 +68,6 @@ class MSGTaskList: NSObject, NSCoding {
     }
     
     /**
-     Sorts the `taskList` and saves to persistent storage
-     */
-    func sortTaskList() {
-        sortTasksInList()
-        
-        MSGTaskListStore.sharedInstance.storeTaskList(self)
-    }
-    
-    /**
      Replace the `withTask` in the `taskList`
      
      - Parameter withTask: Task data supplied by the UI
@@ -98,6 +93,15 @@ class MSGTaskList: NSObject, NSCoding {
     }
 
     // MARK: - Private Utility Methods
+    /**
+     Sorts the `taskList` and saves to persistent storage
+     */
+    private func sortTaskList() {
+        sortTasksInList()
+        
+        MSGTaskListStore.sharedInstance.storeTaskList(self)
+    }
+    
     private func sortTasksInList() {
 
         switch taskListOrder {
