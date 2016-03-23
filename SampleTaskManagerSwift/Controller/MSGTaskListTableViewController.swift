@@ -106,9 +106,9 @@ class MSGTaskListTableViewController: UITableViewController, UpdatedTaskReportin
         return true
     }
     
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        // Intentionally left empty - SO post -- http://stackoverflow.com/questions/24103069/swift-add-swipe-to-delete-tableviewcell
-    }
+//    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+//        // Intentionally left empty - SO post -- http://stackoverflow.com/questions/24103069/swift-add-swipe-to-delete-tableviewcell
+//    }
     
     // Add the Swipe-to-Delete functionality
     override func tableView(tableView: UITableView, editActionsForRowAtIndexPath indexPath: NSIndexPath) -> [UITableViewRowAction]? {
@@ -119,11 +119,11 @@ class MSGTaskListTableViewController: UITableViewController, UpdatedTaskReportin
             self.tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         }
         
-        let editAction = UITableViewRowAction(style: .Normal, title: "Edit") {action in
-            //handle edit
-        }
+//        let editAction = UITableViewRowAction(style: .Normal, title: "Edit") {action in
+//            //handle edit
+//        }
         
-        return [deleteAction, editAction]
+        return [deleteAction/*, editAction */]
     }
 
     
