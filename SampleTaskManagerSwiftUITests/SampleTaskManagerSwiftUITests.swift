@@ -51,7 +51,7 @@ class SampleTaskManagerSwiftUITests: XCTestCase {
         app.navigationBars["SampleTaskManagerSwift.MSGCreateAndEditView"].buttons["Apply"].tap()
         
         // Back on the main UI, find the last element in the tableView
-        let cells = app.tables.staticTexts.matchingPredicate(NSPredicate(format: "label BEGINSWITH 'Title:'"))
+        let cells = app.tables.staticTexts.matchingPredicate(NSPredicate(format: "label BEGINSWITH 'Title: Hello'"))
         let titleStringElement = cells.elementBoundByIndex(cells.count - 1)
 
         // Then
