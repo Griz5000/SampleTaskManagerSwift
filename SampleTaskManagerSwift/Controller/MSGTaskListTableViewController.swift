@@ -85,7 +85,7 @@ class MSGTaskListTableViewController: UITableViewController, UpdatedTaskReportin
             taskDueDateString = "Unset"
         }
         taskCell.taskDueDateLabel.text = "Due Date: \(taskDueDateString)"
-        taskCell.taskStatusLabel.text = "Status : \(appTask.status.stringRepresentation())"
+        taskCell.taskStatusLabel.text = "Status: \(appTask.status.stringRepresentation())"
         
         let taskStatusDateString = NSDateFormatter.localizedStringFromDate(appTask.statusDate, dateStyle: .ShortStyle, timeStyle: .ShortStyle)
         taskCell.taskStatusDateLabel.text = "Status Date: \(taskStatusDateString)"
