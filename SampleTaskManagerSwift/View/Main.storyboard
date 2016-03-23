@@ -20,7 +20,7 @@
                                 <rect key="frame" x="0.0" y="92" width="600" height="130"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CrX-1h-Cqk" id="XAR-nM-taf">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="130"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="129.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3gc-6q-vog">
@@ -69,6 +69,9 @@
                                         </mask>
                                     </variation>
                                 </tableViewCellContentView>
+                                <accessibility key="accessibilityConfiguration">
+                                    <bool key="isElement" value="YES"/>
+                                </accessibility>
                                 <connections>
                                     <outlet property="taskDueDateLabel" destination="DV2-Cl-J5K" id="qAG-dT-b00"/>
                                     <outlet property="taskStatusDateLabel" destination="sJi-fy-FQT" id="JmO-4Q-VZu"/>
@@ -90,7 +93,7 @@
                             </connections>
                         </barButtonItem>
                         <segmentedControl key="titleView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="bar" selectedSegmentIndex="0" id="gYk-zM-ir1">
-                            <rect key="frame" x="129" y="7" width="343" height="30"/>
+                            <rect key="frame" x="128.5" y="7" width="343" height="30"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <segments>
                                 <segment title="Title"/>
