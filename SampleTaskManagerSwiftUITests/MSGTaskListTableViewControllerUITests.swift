@@ -9,9 +9,15 @@
 import XCTest
 
 class MSGTaskListTableViewControllerUITests: XCTestCase {
-            
+    
+    // MARK: - Class Constants
+    static let offsetForTomorrow: NSTimeInterval = 86400.0 // In seconds
+    static let fullMinuteInterval: UInt32 = 65 // In seconds
+    
+    // MARK: - Stored Properties
     let app = XCUIApplication()
     
+    // MARK: - Class setUp & tearDown
     // Put setup code here. This method is called before the invocation of each test method in the class.
     override func setUp() {
         super.setUp()
@@ -31,17 +37,17 @@ class MSGTaskListTableViewControllerUITests: XCTestCase {
         super.tearDown()
     }
     
+    // MARK: - Private Utility Methods
     // Create a task to be used by other test methods
-    func addTaskToList(taskTitleString: String) { // √
+    private func addTaskToList(taskTitleString: String) {
         
         // Select the `New` button from the main UI
         app.navigationBars["SampleTaskManagerSwift.MSGTaskListTableView"].buttons["New"].tap()
         
         // Select the `Title` textField from the CreateAndEdit UI
-        let textFieldArray = app.scrollViews.descendantsMatchingType(.TextField)
-        let textField = textFieldArray["Title:"]
+        let textField = app.scrollViews.otherElements.textFields["Title:"] // Had to add 'Title:' label under Accessibility on the Storyboard
         textField.tap()
-        
+    
         // Enter text into the `Title` textField
         textField.typeText(taskTitleString)
         
@@ -49,7 +55,8 @@ class MSGTaskListTableViewControllerUITests: XCTestCase {
         app.navigationBars["SampleTaskManagerSwift.MSGCreateAndEditView"].buttons["Apply"].tap()
     }
     
-    func test1_1AddNewTaskToTaskList() { // √
+    // MARK: - Test Methods
+    func test1_1AddNewTaskToTaskList() {
         
         // Given
         // When
@@ -75,7 +82,7 @@ class MSGTaskListTableViewControllerUITests: XCTestCase {
         XCTAssertEqual(statusdateLabel.label, "Status Date: \(saveDateString)")
     }
     
-    func test1_2DeleteTaskFromList() { // √
+    func test1_2DeleteTaskFromList() {
         
         // Given
         // Assure that there is a task available to delete
@@ -110,11 +117,20 @@ class MSGTaskListTableViewControllerUITests: XCTestCase {
         foundNewTask.tap()
 
         // When
+        app.scrollViews.otherElements.textFields["Due Date:"].tap()
+        
+        // Tap anywhere to dismiss the due date picker popover
+        app.scrollViews.otherElements.staticTexts["Title:"].tap()
+        
+        app.navigationBars["SampleTaskManagerSwift.MSGCreateAndEditView"].buttons["Apply"].tap()
         
         // Then
-    }
+        // New cells have the `Due Date` initialized to "Unset", this Due date should be something other than "Unset"
+        let dueDateLabel = foundNewTask.staticTexts.matchingPredicate(NSPredicate(format: "label BEGINSWITH 'Due Date:'")).element
+        XCTAssertNotEqual(dueDateLabel.label, "Due Date: Unset")
+   }
     
-    func test2_2ModifyTaskStatus() { // √
+    func test2_2ModifyTaskStatus() {
         
         // Given
         // Ensure that there is at least one task in the list
@@ -146,17 +162,34 @@ class MSGTaskListTableViewControllerUITests: XCTestCase {
         XCTAssertEqual(statusLabel.label, "Status: Canceled")
     }
     
-    func test2_3ModifyTaskStatusDueDate() {
+    // The 'Status Date:' is only reset when a new status is selected
+    func test2_3ModifyTaskStatusDate() {
         
         // Given
-        
         // Ensure that there is at least one task in the list
         let helloWithDateString = "Hello \(NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .ShortStyle, timeStyle: .ShortStyle))"
         addTaskToList(helloWithDateString)
         
-        // When
+        let foundNewTask = app.tables.cells.containingType(.StaticText, identifier: "Title: \(helloWithDateString)").element
+        let statusDateLabel = foundNewTask.staticTexts.matchingPredicate(NSPredicate(format: "label BEGINSWITH 'Status Date:'")).element.label
+        foundNewTask.tap()
         
+        // When
+        // The 'Status Date:' is only reset when a new status is selected, 
+        // so 'sleep' must be perfored to ensure that more than a minute has elapsed 
+        // since the task was created
+        // NOTE: This 'sleep' signinicantly delays the test, but there is no other way to validate this capability
+        sleep(MSGTaskListTableViewControllerUITests.fullMinuteInterval)
+        
+        app.scrollViews.otherElements.buttons["Done"].tap()
+
+        // Navigate back to home UI screen
+        app.navigationBars["SampleTaskManagerSwift.MSGCreateAndEditView"].buttons["Apply"].tap()
+        
+        let updatedStatusDateLabel = foundNewTask.staticTexts.matchingPredicate(NSPredicate(format: "label BEGINSWITH 'Status Date:'")).element.label
+
         // Then
+        XCTAssertNotEqual(statusDateLabel, updatedStatusDateLabel)
     }
     
     func tes3_1SelectSortByTitle() {
@@ -165,7 +198,8 @@ class MSGTaskListTableViewControllerUITests: XCTestCase {
         
         let helloWithDateString = "Hello \(NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .ShortStyle, timeStyle: .ShortStyle))"
         addTaskToList(helloWithDateString)
-        let helloWithTomorrowDateString = "Hello \(NSDateFormatter.localizedStringFromDate(NSDate().dateByAddingTimeInterval(86400), dateStyle: .ShortStyle, timeStyle: .ShortStyle))"
+        
+        let helloWithTomorrowDateString = "Hello \(NSDateFormatter.localizedStringFromDate(NSDate().dateByAddingTimeInterval(MSGTaskListTableViewControllerUITests.offsetForTomorrow), dateStyle: .ShortStyle, timeStyle: .ShortStyle))"
         addTaskToList(helloWithTomorrowDateString)
         
         let appNavigationBar = app.navigationBars["SampleTaskManagerSwift.MSGTaskListTableView"]
@@ -208,7 +242,8 @@ class MSGTaskListTableViewControllerUITests: XCTestCase {
         
         // Then
     }
-    
+
+// TODO: - Delete when complete
 //    func testModifyExistingTask() {
 //        
 //        // Given
