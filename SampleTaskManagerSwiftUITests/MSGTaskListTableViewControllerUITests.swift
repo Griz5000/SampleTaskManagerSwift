@@ -12,7 +12,7 @@ class MSGTaskListTableViewControllerUITests: XCTestCase {
     
     // MARK: - Class Constants
     static let offsetForTomorrow: NSTimeInterval = 86400.0 // In seconds
-    static let fullMinuteInterval: UInt32 = 65 // In seconds
+    static let aShortWhile: UInt32 = 5 // In seconds
     
     // MARK: - Stored Properties
     let app = XCUIApplication()
@@ -53,6 +53,15 @@ class MSGTaskListTableViewControllerUITests: XCTestCase {
         
         // Select the `Apply` button in the Navigation Bar of the CreateAndEdit UI
         app.navigationBars["SampleTaskManagerSwift.MSGCreateAndEditView"].buttons["Apply"].tap()
+    }
+    
+    private func sleepUntilNextMinute() {
+        let startMinutes = NSCalendar.currentCalendar().components([.Minute], fromDate: NSDate()).minute
+        var incrementedMinutes: Int
+        repeat {
+            sleep(MSGTaskListTableViewControllerUITests.aShortWhile)
+            incrementedMinutes = NSCalendar.currentCalendar().components([.Minute], fromDate: NSDate()).minute
+        } while startMinutes == incrementedMinutes
     }
     
     // MARK: - Test Methods
@@ -175,11 +184,10 @@ class MSGTaskListTableViewControllerUITests: XCTestCase {
         foundNewTask.tap()
         
         // When
-        // The 'Status Date:' is only reset when a new status is selected, 
-        // so 'sleep' must be perfored to ensure that more than a minute has elapsed 
-        // since the task was created
-        // NOTE: This 'sleep' signinicantly delays the test, but there is no other way to validate this capability
-        sleep(MSGTaskListTableViewControllerUITests.fullMinuteInterval)
+        // The 'Status Date:' is only reset when a new status is selected.
+        // The only way to automatically detect the change is when the minute component has changed
+        // so a delay must be performed to allow a time interval for that to occur
+        sleepUntilNextMinute()
         
         app.scrollViews.otherElements.buttons["Done"].tap()
 
