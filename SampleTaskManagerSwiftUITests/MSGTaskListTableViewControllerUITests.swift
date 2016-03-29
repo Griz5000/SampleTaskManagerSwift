@@ -55,6 +55,18 @@ class MSGTaskListTableViewControllerUITests: XCTestCase {
         app.navigationBars["SampleTaskManagerSwift.MSGCreateAndEditView"].buttons["Apply"].tap()
     }
     
+    private func setDueDate(foundNewTask: XCUIElement) {
+        foundNewTask.tap()
+        
+        // When
+        app.scrollViews.otherElements.textFields["Due Date:"].tap()
+        
+        // Tap anywhere to dismiss the due date picker popover
+        app.scrollViews.otherElements.staticTexts["Title:"].tap()
+        
+        app.navigationBars["SampleTaskManagerSwift.MSGCreateAndEditView"].buttons["Apply"].tap()
+    }
+    
     private func sleepUntilNextMinute() {
         let startMinutes = NSCalendar.currentCalendar().components([.Minute], fromDate: NSDate()).minute
         var incrementedMinutes: Int
@@ -123,15 +135,7 @@ class MSGTaskListTableViewControllerUITests: XCTestCase {
         addTaskToList(helloWithDateString)
         
         let foundNewTask = app.tables.cells.containingType(.StaticText, identifier: "Title: \(helloWithDateString)").element
-        foundNewTask.tap()
-
-        // When
-        app.scrollViews.otherElements.textFields["Due Date:"].tap()
-        
-        // Tap anywhere to dismiss the due date picker popover
-        app.scrollViews.otherElements.staticTexts["Title:"].tap()
-        
-        app.navigationBars["SampleTaskManagerSwift.MSGCreateAndEditView"].buttons["Apply"].tap()
+        setDueDate(foundNewTask)
         
         // Then
         // New cells have the `Due Date` initialized to "Unset", this Due date should be something other than "Unset"
@@ -200,10 +204,9 @@ class MSGTaskListTableViewControllerUITests: XCTestCase {
         XCTAssertNotEqual(statusDateLabel, updatedStatusDateLabel)
     }
     
-    func tes3_1SelectSortByTitle() {
+    func test3_1SelectSortByTitle() {
         
         // Given
-        
         let helloWithDateString = "Hello \(NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .ShortStyle, timeStyle: .ShortStyle))"
         addTaskToList(helloWithDateString)
         
@@ -218,19 +221,38 @@ class MSGTaskListTableViewControllerUITests: XCTestCase {
         
         // Then
         let cells = app.tables.cells
-        let firstCellElement = cells.elementBoundByIndex(0)
-        let secondCellElement = cells.elementBoundByIndex(1)
         
-        XCTAssertTrue(firstCellElement.label <= secondCellElement.label)
+        let firstCellElement = cells.containingType(.StaticText, identifier: "Title: \(helloWithDateString)").element
+        let firstCellTitle = firstCellElement.staticTexts["Title:"].label
+
+        let secondCellElement = cells.containingType(.StaticText, identifier: "Title: \(helloWithTomorrowDateString)").element
+        let secondCellTitle = secondCellElement.staticTexts["Title:"].label
+        
+        XCTAssertTrue(firstCellTitle <= secondCellTitle)
     }
     
     func test3_2SelectSortByDueDate() {
         
         // Given
+        let firstHelloWithDateString = "Hello \(NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .ShortStyle, timeStyle: .ShortStyle))"
+        addTaskToList(firstHelloWithDateString)
+        let firstFoundNewTask = app.tables.cells.containingType(.StaticText, identifier: "Title: \(firstHelloWithDateString)").element
+        
+        let secondHelloWithDateString = "Hello \(NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .ShortStyle, timeStyle: .ShortStyle))"
+        addTaskToList(secondHelloWithDateString)
+        let secondFoundNewTask = app.tables.cells.containingType(.StaticText, identifier: "Title: \(secondHelloWithDateString)").element
         
         // When
+        setDueDate(firstFoundNewTask)
         
+        sleepUntilNextMinute()
+        
+        setDueDate(secondFoundNewTask)
+
         // Then
+//        let dueDateLabel = foundNewTask.staticTexts.matchingPredicate(NSPredicate(format: "label BEGINSWITH 'Due Date:'")).element
+//        XCTAssertNotEqual(dueDateLabel.label, "Due Date: Unset")
+
     }
     
     func test3_3SelectSortByStatus() {

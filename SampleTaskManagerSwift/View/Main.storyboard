@@ -25,6 +25,7 @@
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="3gc-6q-vog">
                                             <rect key="frame" x="8" y="8" width="584" height="25"/>
+                                            <accessibility key="accessibilityConfiguration" identifier="Title:"/>
                                             <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="22"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
