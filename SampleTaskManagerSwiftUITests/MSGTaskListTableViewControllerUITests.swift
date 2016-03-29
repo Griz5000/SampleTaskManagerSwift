@@ -12,6 +12,7 @@ class MSGTaskListTableViewControllerUITests: XCTestCase {
     
     // MARK: - Class Constants
     static let offsetForTomorrow: NSTimeInterval = 86400.0 // In seconds
+    static let offsetForDayAfterTomorrow: NSTimeInterval = 2 * MSGTaskListTableViewControllerUITests.offsetForTomorrow // In seconds
     static let aShortWhile: UInt32 = 5 // In seconds
     
     // MARK: - Stored Properties
@@ -45,7 +46,7 @@ class MSGTaskListTableViewControllerUITests: XCTestCase {
         app.navigationBars["SampleTaskManagerSwift.MSGTaskListTableView"].buttons["New"].tap()
         
         // Select the `Title` textField from the CreateAndEdit UI
-        let textField = app.scrollViews.otherElements.textFields["Title:"] // Had to add 'Title:' label under Accessibility on the Storyboard
+        let textField = app.scrollViews.otherElements.textFields["Title:"] // Had to add 'Title:' identifier under Accessibility on the Storyboard
         textField.tap()
     
         // Enter text into the `Title` textField
@@ -59,14 +60,15 @@ class MSGTaskListTableViewControllerUITests: XCTestCase {
         foundNewTask.tap()
         
         // When
-        app.scrollViews.otherElements.textFields["Due Date:"].tap()
+        app.scrollViews.otherElements.textFields["Due Date:"].tap() // Had to add 'Due Date:' identifier under Accessibility on the Storyboard
         
         // Tap anywhere to dismiss the due date picker popover
-        app.scrollViews.otherElements.staticTexts["Title:"].tap()
+        app.scrollViews.otherElements.staticTexts["Title:"].tap() // Had to add 'Title:' identifier under Accessibility on the Storyboard
         
         app.navigationBars["SampleTaskManagerSwift.MSGCreateAndEditView"].buttons["Apply"].tap()
     }
     
+    // Ensure that enough time has elapsed so that auto-generated timestamps are not identical
     private func sleepUntilNextMinute() {
         let startMinutes = NSCalendar.currentCalendar().components([.Minute], fromDate: NSDate()).minute
         var incrementedMinutes: Int
@@ -74,6 +76,21 @@ class MSGTaskListTableViewControllerUITests: XCTestCase {
             sleep(MSGTaskListTableViewControllerUITests.aShortWhile)
             incrementedMinutes = NSCalendar.currentCalendar().components([.Minute], fromDate: NSDate()).minute
         } while startMinutes == incrementedMinutes
+    }
+    
+    private func taskDateFromString (taskPrefixString: String, taskDateString: String) -> NSDate? {
+        // Crop task prefix from the string
+        var croppedTaskDateString = taskDateString
+        
+        if let rangeOfPrefix = croppedTaskDateString.rangeOfString(taskPrefixString) {
+            let indexFollowingPrefix = rangeOfPrefix.endIndex
+            croppedTaskDateString = croppedTaskDateString.substringFromIndex(indexFollowingPrefix)
+        }
+        
+        let taskDateFormatter = NSDateFormatter()
+        taskDateFormatter.dateStyle = .ShortStyle //Match the style that was used to create the date string
+        taskDateFormatter.timeStyle = .ShortStyle
+        return taskDateFormatter.dateFromString(croppedTaskDateString)
     }
     
     // MARK: - Test Methods
@@ -108,7 +125,6 @@ class MSGTaskListTableViewControllerUITests: XCTestCase {
         // Given
         // Assure that there is a task available to delete
         let helloWithDateString = "Hello \(NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .ShortStyle, timeStyle: .ShortStyle))"
-        
         addTaskToList(helloWithDateString)
         
         // Find the last element in the tableView
@@ -116,11 +132,11 @@ class MSGTaskListTableViewControllerUITests: XCTestCase {
         let cellCount = cells.count
 
         // Find the last cell in the list
-        let titleStringElement = cells.elementBoundByIndex(cells.count - 1)
+        let lastCellElement = cells.elementBoundByIndex(cells.count - 1)
         
         // When
         // Swipe/Delete
-        titleStringElement.swipeLeft()
+        lastCellElement.swipeLeft()
         app.tables.buttons["Delete"].tap()
         
         // Then
@@ -238,78 +254,94 @@ class MSGTaskListTableViewControllerUITests: XCTestCase {
         addTaskToList(firstHelloWithDateString)
         let firstFoundNewTask = app.tables.cells.containingType(.StaticText, identifier: "Title: \(firstHelloWithDateString)").element
         
-        let secondHelloWithDateString = "Hello \(NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .ShortStyle, timeStyle: .ShortStyle))"
+        let secondHelloWithDateString = "Hello \(NSDateFormatter.localizedStringFromDate(NSDate().dateByAddingTimeInterval(MSGTaskListTableViewControllerUITests.offsetForTomorrow), dateStyle: .ShortStyle, timeStyle: .ShortStyle))"
         addTaskToList(secondHelloWithDateString)
         let secondFoundNewTask = app.tables.cells.containingType(.StaticText, identifier: "Title: \(secondHelloWithDateString)").element
         
+        let appNavigationBar = app.navigationBars["SampleTaskManagerSwift.MSGTaskListTableView"]
+        
         // When
         setDueDate(firstFoundNewTask)
+        let firstCellDueDateString = firstFoundNewTask.staticTexts["Due Date:"].label
+        guard let firstCellDueDate = taskDateFromString("Due Date: ", taskDateString: firstCellDueDateString) else { XCTFail(); return }
         
         sleepUntilNextMinute()
         
         setDueDate(secondFoundNewTask)
+        let secondCellDueDateString = secondFoundNewTask.staticTexts["Due Date:"].label 
+        guard let secondCellDueDate = taskDateFromString("Due Date: ", taskDateString: secondCellDueDateString) else { XCTFail(); return }
 
         // Then
-//        let dueDateLabel = foundNewTask.staticTexts.matchingPredicate(NSPredicate(format: "label BEGINSWITH 'Due Date:'")).element
-//        XCTAssertNotEqual(dueDateLabel.label, "Due Date: Unset")
-
+        appNavigationBar.buttons["Sort"].tap()
+        appNavigationBar.segmentedControls.buttons["Due Date"].tap()
+        
+        XCTAssertTrue(firstCellDueDate.compare(secondCellDueDate) == .OrderedAscending)
     }
     
     func test3_3SelectSortByStatus() {
         
         // Given
+        let firstHelloWithDateString = "Hello \(NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .ShortStyle, timeStyle: .ShortStyle))"
+        addTaskToList(firstHelloWithDateString)
+        let firstFoundNewTask = app.tables.cells.containingType(.StaticText, identifier: "Title: \(firstHelloWithDateString)").element
+        
+        let secondHelloWithDateString = "Hello \(NSDateFormatter.localizedStringFromDate(NSDate().dateByAddingTimeInterval(MSGTaskListTableViewControllerUITests.offsetForTomorrow), dateStyle: .ShortStyle, timeStyle: .ShortStyle))"
+        addTaskToList(secondHelloWithDateString)
+        let secondFoundNewTask = app.tables.cells.containingType(.StaticText, identifier: "Title: \(secondHelloWithDateString)").element
+        
+        let thirdHelloWithDateString = "Hello \(NSDateFormatter.localizedStringFromDate(NSDate().dateByAddingTimeInterval(MSGTaskListTableViewControllerUITests.offsetForDayAfterTomorrow), dateStyle: .ShortStyle, timeStyle: .ShortStyle))"
+        addTaskToList(thirdHelloWithDateString)
+        let thirdFoundNewTask = app.tables.cells.containingType(.StaticText, identifier: "Title: \(thirdHelloWithDateString)").element
+        
+        let appNavigationBar = app.navigationBars["SampleTaskManagerSwift.MSGTaskListTableView"]
         
         // When
+        // When a task is created, the 'Status:' is `New` by default
+        let firststatusLabel = firstFoundNewTask.staticTexts.matchingPredicate(NSPredicate(format: "label BEGINSWITH 'Status:'")).element.label
+        
+        secondFoundNewTask.tap()
+        app.scrollViews.otherElements.buttons["Done"].tap()
+        app.navigationBars["SampleTaskManagerSwift.MSGCreateAndEditView"].buttons["Apply"].tap()
+        let secondStatusLabel = secondFoundNewTask.staticTexts.matchingPredicate(NSPredicate(format: "label BEGINSWITH 'Status:'")).element.label
+        
+        thirdFoundNewTask.tap()
+        app.scrollViews.otherElements.buttons["Canceled"].tap()
+        app.navigationBars["SampleTaskManagerSwift.MSGCreateAndEditView"].buttons["Apply"].tap()
+        let thirdStatusLabel = thirdFoundNewTask.staticTexts.matchingPredicate(NSPredicate(format: "label BEGINSWITH 'Status:'")).element.label
         
         // Then
+        appNavigationBar.buttons["Sort"].tap()
+        appNavigationBar.segmentedControls.buttons["Status"].tap()
+        
+//        XCTAssertTrue(firstCellDueDate <= secondCellDueDate)
     }
     
     func test3_4SelectSortByStatusDate() {
         
         // Given
+        let firstHelloWithDateString = "Hello \(NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .ShortStyle, timeStyle: .ShortStyle))"
+        addTaskToList(firstHelloWithDateString)
+        let firstFoundNewTask = app.tables.cells.containingType(.StaticText, identifier: "Title: \(firstHelloWithDateString)").element
+        
+        sleepUntilNextMinute() // This ensures that the second task will have a later Status Date
+        
+        let secondHelloWithDateString = "Hello \(NSDateFormatter.localizedStringFromDate(NSDate().dateByAddingTimeInterval(MSGTaskListTableViewControllerUITests.offsetForTomorrow), dateStyle: .ShortStyle, timeStyle: .ShortStyle))"
+        addTaskToList(secondHelloWithDateString)
+        let secondFoundNewTask = app.tables.cells.containingType(.StaticText, identifier: "Title: \(secondHelloWithDateString)").element
+        
+        let appNavigationBar = app.navigationBars["SampleTaskManagerSwift.MSGTaskListTableView"]
         
         // When
+        let firstCellStatusDateString = firstFoundNewTask.staticTexts["Status Date:"].label
+        guard let firstCellStatusDate = taskDateFromString("Status Date: ", taskDateString: firstCellStatusDateString) else { XCTFail(); return }
+        
+        let secondCellStatusDateString = secondFoundNewTask.staticTexts["Status Date:"].label
+        guard let secondCellStatusDate = taskDateFromString("Status Date: ", taskDateString: secondCellStatusDateString) else { XCTFail(); return }
         
         // Then
+        appNavigationBar.buttons["Sort"].tap()
+        appNavigationBar.segmentedControls.buttons["Status Date"].tap()
+        
+        XCTAssertTrue(firstCellStatusDate.compare(secondCellStatusDate) == .OrderedAscending)
     }
-
-// TODO: - Delete when complete
-//    func testModifyExistingTask() {
-//        
-//        // Given
-//        
-//        // Ensure that there is at least one task in the list
-//        let helloWithDateString = "Hello \(NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .ShortStyle, timeStyle: .ShortStyle))"
-//        
-//        addTaskToList(helloWithDateString)
-//        
-//        // When
-//        let cells = app.tables.staticTexts.matchingPredicate(NSPredicate(format: "label BEGINSWITH 'Title: Hello'"))
-//        let firstCell = cells.elementBoundByIndex(0)
-//        firstCell.tap()
-//        
-//        let titleElementsQuery = app.scrollViews.otherElements.containingType(.StaticText, identifier:"Title:")
-//        let element = titleElementsQuery.childrenMatchingType(.Other).element
-//        
-//        // 1
-//        let textView = element.childrenMatchingType(.TextView).element
-//        textView.tap()
-//        textView.typeText("My name is Mike")
-//        
-//        // 2
-//        titleElementsQuery.childrenMatchingType(.TextField).elementBoundByIndex(1).tap()
-//        app.datePickers.pickerWheels["Today"].tap()
-//        app.childrenMatchingType(.Window).elementBoundByIndex(0).childrenMatchingType(.Other).elementBoundByIndex(1).childrenMatchingType(.Other).elementBoundByIndex(0).childrenMatchingType(.Image).elementBoundByIndex(0).tap()
-//        
-//        // 3
-//        app.scrollViews.otherElements.buttons["Done"].tap()
-//        
-//        app.navigationBars["SampleTaskManagerSwift.MSGCreateAndEditView"].buttons["Apply"].tap()
-//        
-//        // Then
-//        let firstCellInTaskList = app.tables.cells.elementBoundByIndex(0)
-//        let statusLabel = firstCellInTaskList.staticTexts.matchingPredicate(NSPredicate(format: "label BEGINSWITH 'Status:'")).element
-//        
-//        XCTAssertEqual(statusLabel.label, "Status: Done")
-//    }
 }
