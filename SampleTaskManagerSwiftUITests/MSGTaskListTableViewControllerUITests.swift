@@ -15,6 +15,11 @@ class MSGTaskListTableViewControllerUITests: XCTestCase {
     static let offsetForDayAfterTomorrow: NSTimeInterval = 2 * MSGTaskListTableViewControllerUITests.offsetForTomorrow // In seconds
     static let aShortWhile: UInt32 = 5 // In seconds
     
+    // NOTE: Due to not being allowed to access App data structures in UI Testing, the values for the TaskStatus enum are simulated
+    static let MSGTask_TaskStatus_New: Int      = 0
+    static let MSGTask_TaskStatus_Done: Int     = 1
+    static let MSGTask_TaskStatus_Canceled: Int = 2
+    
     // MARK: - Stored Properties
     let app = XCUIApplication()
     
@@ -78,19 +83,57 @@ class MSGTaskListTableViewControllerUITests: XCTestCase {
         } while startMinutes == incrementedMinutes
     }
     
+    private func cropLabelString ( taskPrefixString: String, taskLabelString: String ) -> String {
+        var croppedTaskLabelString = taskLabelString
+        
+        if let rangeOfPrefix = taskLabelString.rangeOfString(taskPrefixString) {
+            let indexFollowingPrefix = rangeOfPrefix.endIndex
+            croppedTaskLabelString = croppedTaskLabelString.substringFromIndex(indexFollowingPrefix)
+        }
+        
+        return croppedTaskLabelString
+    }
+    
     private func taskDateFromString (taskPrefixString: String, taskDateString: String) -> NSDate? {
         // Crop task prefix from the string
-        var croppedTaskDateString = taskDateString
-        
-        if let rangeOfPrefix = croppedTaskDateString.rangeOfString(taskPrefixString) {
-            let indexFollowingPrefix = rangeOfPrefix.endIndex
-            croppedTaskDateString = croppedTaskDateString.substringFromIndex(indexFollowingPrefix)
-        }
+        let croppedTaskDateString = cropLabelString(taskPrefixString, taskLabelString: taskDateString)
         
         let taskDateFormatter = NSDateFormatter()
         taskDateFormatter.dateStyle = .ShortStyle //Match the style that was used to create the date string
         taskDateFormatter.timeStyle = .ShortStyle
         return taskDateFormatter.dateFromString(croppedTaskDateString)
+    }
+    
+    // I could not use MSGTask.TaskStatus directly in the UI Testing, per link below
+    private func taskStatusFromString(taskPrefixString: String, taskStatusString: String) -> Int? {
+
+        /*
+        https://github.com/Quick/Quick/issues/415#issuecomment-153885307
+        esetnik commented on Nov 4, 2015
+        I received a response from Apple regarding this issue.
+        
+        Apple Developer Relations04-Nov-2015 04:13 PM
+        
+        This issue behaves as intended based on the following:
+        
+        UI tests run outside your app in a separate process. You can’t access app code from inside a UI test - that’s intentionally part of the design. Use unit testing for tests that need to access the app code and UI tests to automate user interaction testing.
+        
+        We are now closing this bug report.
+        */
+
+        // Crop task prefix from the string
+        let croppedTaskStatusString = cropLabelString(taskPrefixString, taskLabelString: taskStatusString)
+     
+        switch croppedTaskStatusString {
+        case "New":
+            return MSGTaskListTableViewControllerUITests.MSGTask_TaskStatus_New
+        case "Done":
+            return MSGTaskListTableViewControllerUITests.MSGTask_TaskStatus_Done
+        case "Canceled":
+            return MSGTaskListTableViewControllerUITests.MSGTask_TaskStatus_Canceled
+        default:
+            return nil
+        }
     }
     
     // MARK: - Test Methods
@@ -281,39 +324,58 @@ class MSGTaskListTableViewControllerUITests: XCTestCase {
     func test3_3SelectSortByStatus() {
         
         // Given
-        let firstHelloWithDateString = "Hello \(NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .ShortStyle, timeStyle: .ShortStyle))"
-        addTaskToList(firstHelloWithDateString)
-        let firstFoundNewTask = app.tables.cells.containingType(.StaticText, identifier: "Title: \(firstHelloWithDateString)").element
+        // Create the first task
+        let firstCreatedHelloWithDateString = "Hello \(NSDateFormatter.localizedStringFromDate(NSDate(), dateStyle: .ShortStyle, timeStyle: .ShortStyle))"
+        addTaskToList(firstCreatedHelloWithDateString)
+        let firstCreatedNewTask = app.tables.cells.containingType(.StaticText, identifier: "Title: \(firstCreatedHelloWithDateString)").element
         
-        let secondHelloWithDateString = "Hello \(NSDateFormatter.localizedStringFromDate(NSDate().dateByAddingTimeInterval(MSGTaskListTableViewControllerUITests.offsetForTomorrow), dateStyle: .ShortStyle, timeStyle: .ShortStyle))"
-        addTaskToList(secondHelloWithDateString)
-        let secondFoundNewTask = app.tables.cells.containingType(.StaticText, identifier: "Title: \(secondHelloWithDateString)").element
+        // Create the second task
+        let secondCreatedHelloWithDateString = "Hello \(NSDateFormatter.localizedStringFromDate(NSDate().dateByAddingTimeInterval(MSGTaskListTableViewControllerUITests.offsetForTomorrow), dateStyle: .ShortStyle, timeStyle: .ShortStyle))"
+        addTaskToList(secondCreatedHelloWithDateString)
+        let secondCreatedNewTask = app.tables.cells.containingType(.StaticText, identifier: "Title: \(secondCreatedHelloWithDateString)").element
         
-        let thirdHelloWithDateString = "Hello \(NSDateFormatter.localizedStringFromDate(NSDate().dateByAddingTimeInterval(MSGTaskListTableViewControllerUITests.offsetForDayAfterTomorrow), dateStyle: .ShortStyle, timeStyle: .ShortStyle))"
-        addTaskToList(thirdHelloWithDateString)
-        let thirdFoundNewTask = app.tables.cells.containingType(.StaticText, identifier: "Title: \(thirdHelloWithDateString)").element
+        // Create the third task
+        let thirdCreatedHelloWithDateString = "Hello \(NSDateFormatter.localizedStringFromDate(NSDate().dateByAddingTimeInterval(MSGTaskListTableViewControllerUITests.offsetForDayAfterTomorrow), dateStyle: .ShortStyle, timeStyle: .ShortStyle))"
+        addTaskToList(thirdCreatedHelloWithDateString)
         
         let appNavigationBar = app.navigationBars["SampleTaskManagerSwift.MSGTaskListTableView"]
         
         // When
-        // When a task is created, the 'Status:' is `New` by default
-        let firststatusLabel = firstFoundNewTask.staticTexts.matchingPredicate(NSPredicate(format: "label BEGINSWITH 'Status:'")).element.label
-        
-        secondFoundNewTask.tap()
+        // Change the first task status to `Done`
+        firstCreatedNewTask.tap()
         app.scrollViews.otherElements.buttons["Done"].tap()
         app.navigationBars["SampleTaskManagerSwift.MSGCreateAndEditView"].buttons["Apply"].tap()
-        let secondStatusLabel = secondFoundNewTask.staticTexts.matchingPredicate(NSPredicate(format: "label BEGINSWITH 'Status:'")).element.label
         
-        thirdFoundNewTask.tap()
+        // Change the second task status to `Canceled`
+        secondCreatedNewTask.tap()
         app.scrollViews.otherElements.buttons["Canceled"].tap()
         app.navigationBars["SampleTaskManagerSwift.MSGCreateAndEditView"].buttons["Apply"].tap()
-        let thirdStatusLabel = thirdFoundNewTask.staticTexts.matchingPredicate(NSPredicate(format: "label BEGINSWITH 'Status:'")).element.label
+        
+        // When a task is created, the 'Status:' is `New` by default
+        // No need to change the third task status to `New`
         
         // Then
+        // Sort by Status
         appNavigationBar.buttons["Sort"].tap()
         appNavigationBar.segmentedControls.buttons["Status"].tap()
         
-//        XCTAssertTrue(firstCellDueDate <= secondCellDueDate)
+        let cells = app.tables.cells
+        
+        // After sorting, verify that the tasks are ordered by `Status`
+        let firstFoundCell = cells.elementBoundByIndex(0)
+        let firstFoundStatusLabel = firstFoundCell.staticTexts["Status:"].label
+        guard let firstTaskStatus = taskStatusFromString("Status: ", taskStatusString: firstFoundStatusLabel) else { XCTFail(); return }
+        
+        let secondFoundCell = cells.elementBoundByIndex(1)
+        let secondFoundStatusLabel = secondFoundCell.staticTexts["Status:"].label
+        guard let secondTaskStatus = taskStatusFromString("Status: ", taskStatusString: secondFoundStatusLabel) else { XCTFail(); return }
+        
+        let thirdFoundCell = cells.elementBoundByIndex(2)
+        let thirdFoundStatusLabel = thirdFoundCell.staticTexts["Status:"].label
+        guard let thirdTaskStatus = taskStatusFromString("Status: ", taskStatusString: thirdFoundStatusLabel) else { XCTFail(); return }
+        
+        XCTAssertTrue(firstTaskStatus <= secondTaskStatus)
+        XCTAssertTrue(secondTaskStatus <= thirdTaskStatus)
     }
     
     func test3_4SelectSortByStatusDate() {
