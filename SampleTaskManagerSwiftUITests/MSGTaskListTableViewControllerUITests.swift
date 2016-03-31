@@ -36,6 +36,8 @@ class MSGTaskListTableViewControllerUITests: XCTestCase {
         
         // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
         XCUIDevice.sharedDevice().orientation = .Portrait
+        
+        removeAllTasksFromTaskList()
     }
     
     override func tearDown() {
@@ -83,7 +85,7 @@ class MSGTaskListTableViewControllerUITests: XCTestCase {
         } while startMinutes == incrementedMinutes
     }
     
-    private func cropLabelString ( taskPrefixString: String, taskLabelString: String ) -> String {
+    private func cropLabelString(taskPrefixString: String, taskLabelString: String) -> String {
         var croppedTaskLabelString = taskLabelString
         
         if let rangeOfPrefix = taskLabelString.rangeOfString(taskPrefixString) {
@@ -94,7 +96,7 @@ class MSGTaskListTableViewControllerUITests: XCTestCase {
         return croppedTaskLabelString
     }
     
-    private func taskDateFromString (taskPrefixString: String, taskDateString: String) -> NSDate? {
+    private func taskDateFromString(taskPrefixString: String, taskDateString: String) -> NSDate? {
         // Crop task prefix from the string
         let croppedTaskDateString = cropLabelString(taskPrefixString, taskLabelString: taskDateString)
         
@@ -102,6 +104,16 @@ class MSGTaskListTableViewControllerUITests: XCTestCase {
         taskDateFormatter.dateStyle = .ShortStyle //Match the style that was used to create the date string
         taskDateFormatter.timeStyle = .ShortStyle
         return taskDateFormatter.dateFromString(croppedTaskDateString)
+    }
+    
+    private func removeAllTasksFromTaskList() {
+        // Find the last element in the tableView
+        let cells = app.tables.cells
+        
+        while cells.count > 0 {
+            cells.elementBoundByIndex(0).swipeLeft()
+            app.tables.buttons["Delete"].tap()
+        }
     }
     
     // I could not use MSGTask.TaskStatus directly in the UI Testing, per link below
