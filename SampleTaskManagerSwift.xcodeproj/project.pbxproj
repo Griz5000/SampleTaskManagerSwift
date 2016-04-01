@@ -10,6 +10,7 @@
 		4C9C5A4F1C90A3CE00691036 /* MSGTaskListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9C5A4E1C90A3CE00691036 /* MSGTaskListTableViewController.swift */; };
 		4C9C5A511C90A72700691036 /* MSGCreateAndEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9C5A501C90A72700691036 /* MSGCreateAndEditViewController.swift */; };
 		4C9C5A531C90B13700691036 /* MSGTaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9C5A521C90B13700691036 /* MSGTaskTableViewCell.swift */; };
+		4C9F46B41CADB20E002F05DF /* MSGCreateAndEditViewControllerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9F46B31CADB20E002F05DF /* MSGCreateAndEditViewControllerUITests.swift */; };
 		4CACD8BC1CA588FC003B63AB /* MSGTaskListTableViewControllerUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CACD8BB1CA588FC003B63AB /* MSGTaskListTableViewControllerUITests.swift */; };
 		4CB7D3631C8DBD740040BE06 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4CB7D3621C8DBD740040BE06 /* AppDelegate.swift */; };
 		4CB7D36A1C8DBD740040BE06 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4CB7D3691C8DBD740040BE06 /* Assets.xcassets */; };
@@ -43,6 +44,7 @@
 		4C9C5A4E1C90A3CE00691036 /* MSGTaskListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MSGTaskListTableViewController.swift; path = Controller/MSGTaskListTableViewController.swift; sourceTree = "<group>"; };
 		4C9C5A501C90A72700691036 /* MSGCreateAndEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MSGCreateAndEditViewController.swift; path = Controller/MSGCreateAndEditViewController.swift; sourceTree = "<group>"; };
 		4C9C5A521C90B13700691036 /* MSGTaskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MSGTaskTableViewCell.swift; path = View/MSGTaskTableViewCell.swift; sourceTree = "<group>"; };
+		4C9F46B31CADB20E002F05DF /* MSGCreateAndEditViewControllerUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSGCreateAndEditViewControllerUITests.swift; sourceTree = "<group>"; };
 		4CACD8BB1CA588FC003B63AB /* MSGTaskListTableViewControllerUITests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MSGTaskListTableViewControllerUITests.swift; sourceTree = "<group>"; };
 		4CB7D35F1C8DBD740040BE06 /* SampleTaskManagerSwift.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SampleTaskManagerSwift.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4CB7D3621C8DBD740040BE06 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -130,6 +132,7 @@
 			isa = PBXGroup;
 			children = (
 				4CACD8BB1CA588FC003B63AB /* MSGTaskListTableViewControllerUITests.swift */,
+				4C9F46B31CADB20E002F05DF /* MSGCreateAndEditViewControllerUITests.swift */,
 				4CB7D3841C8DBD740040BE06 /* Info.plist */,
 			);
 			path = SampleTaskManagerSwiftUITests;
@@ -330,6 +333,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4C9F46B41CADB20E002F05DF /* MSGCreateAndEditViewControllerUITests.swift in Sources */,
 				4CACD8BC1CA588FC003B63AB /* MSGTaskListTableViewControllerUITests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
