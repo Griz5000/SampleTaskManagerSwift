@@ -3,7 +3,7 @@
 //  SampleTaskManagerSwift
 //
 //  Created by Michael Grysikiewicz on 4/1/16.
-//  Copyright © 2016 Michael Grysikiewicz. All rights reserved.
+//  Copyright © Sogeti USA. All rights reserved.
 //
 
 import XCTest
