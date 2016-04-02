@@ -112,7 +112,6 @@ class MSGCreateAndEditViewController: UIViewController,
         case TaskTextFieldTags.statusTextFieldTag.rawValue:
             return false
         default: return true
-            
         }
     }
     
@@ -252,6 +251,7 @@ class MSGCreateAndEditViewController: UIViewController,
                 validateNewTaskDates()
             }
         } else { // taskTitleTextField is nil, not likely to happen, but this is an Optional
+            // Apple documentation: "This string is @"" by default."
             displayTaskTitleNilAlert()
         }
     }
