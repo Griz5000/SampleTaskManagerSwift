@@ -14,7 +14,7 @@ class SampleTaskManagerSwiftTests: XCTestCase {
     let taskTitleForTest = "Michael's Task"
     let secondTaskTitleForTest = "John's Task"
     let thirdTaskTitleForTest = "Jacob's Task"
-    let taskTitleForBadStatus = "Rocky Mountain High"
+    let taskTitleForBadStatus = "Damian's Task"
     
     override func setUp() {
         super.setUp()

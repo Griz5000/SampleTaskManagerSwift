@@ -249,7 +249,6 @@
 				TargetAttributes = {
 					4CB7D35E1C8DBD740040BE06 = {
 						CreatedOnToolsVersion = 7.2.1;
-						DevelopmentTeam = 7WRAJPM7HE;
 					};
 					4CB7D3721C8DBD740040BE06 = {
 						CreatedOnToolsVersion = 7.2.1;
@@ -459,7 +458,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = SampleTaskManagerSwift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Grysikiewicz.Michael.SampleTaskManagerSwift;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sogeti.us.Grysikiewicz.Michael.SampleTaskManagerSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -471,7 +470,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = SampleTaskManagerSwift/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.Grysikiewicz.Michael.SampleTaskManagerSwift;
+				PRODUCT_BUNDLE_IDENTIFIER = com.sogeti.us.Grysikiewicz.Michael.SampleTaskManagerSwift;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
