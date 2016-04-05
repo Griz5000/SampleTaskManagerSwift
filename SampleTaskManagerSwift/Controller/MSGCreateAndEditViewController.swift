@@ -35,13 +35,19 @@ class MSGCreateAndEditViewController: UIViewController,
     // MARK: - Constants
     private static let taskStatusSegmentedControlReset = MSGTask.TaskStatus.New.rawValue
     private static let datePickerSegueIdentifier = "DatePickerSegue"
+    private static let defaultTaskStatusPhotoName = "lion_3"
+    private static let fakeTaskStatusPhotoName = "lion_2"
 
     // MARK: - Stored Properties
     var taskToEdit: MSGTask?
-    weak var activeField: AnyObject?
+    
+    private weak var activeField: AnyObject?
+    private static let defaultTaskStatusPhoto = UIImage(named: MSGCreateAndEditViewController.defaultTaskStatusPhotoName)!
+    private static let fakeTaskStatusPhoto = UIImage(named: MSGCreateAndEditViewController.fakeTaskStatusPhotoName)!
     
     private var localDueDate: NSDate?
     private var localStatusDate: NSDate?
+    private var localStatusPhoto = MSGCreateAndEditViewController.defaultTaskStatusPhoto
     
     var delegate:  UpdatedTaskReportingDelegate?
     
@@ -63,7 +69,11 @@ class MSGCreateAndEditViewController: UIViewController,
         registerForKeyboardNotifications()
         
         taskTitleTextField.enabled = (taskToEdit == nil) // Editing the title of an existing task is diallowed
- 
+        
+        if let _ = taskToEdit?.statusPhoto {
+            localStatusPhoto = UIImage(data: taskToEdit!.statusPhoto!)!
+        }
+        
         // Populate the Create/Edit View Controller
         updateUI(taskToEdit)
     }
@@ -80,6 +90,7 @@ class MSGCreateAndEditViewController: UIViewController,
     // MARK: - Target / Action Methods
     @IBAction func clearButtonSelected(sender: UIBarButtonItem) {
         
+        localStatusPhoto = MSGCreateAndEditViewController.defaultTaskStatusPhoto;
         updateUI(nil)
     }
     
@@ -90,6 +101,12 @@ class MSGCreateAndEditViewController: UIViewController,
     @IBAction func statusTypeSegmentedControlSelected() {
         localStatusDate = NSDate()
         taskStatusDateTextField.text = stringForTaskDate(localStatusDate)
+    }
+    
+    @IBAction func takePhoto(sender: UIButton) {
+        // TODO: Delete this method and button in Storyboard
+        localStatusPhoto = MSGCreateAndEditViewController.fakeTaskStatusPhoto
+        updateUI(taskToEdit)
     }
     
     // MARK: - Scroll View Delegate
@@ -208,7 +225,7 @@ class MSGCreateAndEditViewController: UIViewController,
     // MARK: - DateReportingDelegate Method
     func reportSelectedDate(selectedDate: NSDate, dateType: Int?) {
         
-        if dateType != nil {
+        if let _ = dateType {
             if let thisTextFieldTag = TaskTextFieldTags(rawValue: dateType!) {
                 switch thisTextFieldTag {
                 case .dueDateTextFieldTag:
@@ -233,8 +250,25 @@ class MSGCreateAndEditViewController: UIViewController,
         
         localStatusDate = thisTask?.statusDate ?? NSDate()
         taskStatusDateTextField.text = stringForTaskDate(localStatusDate)
-
+        
+//        tastkStatusPhoto.image = photoImageForTask()
+        tastkStatusPhoto.image = localStatusPhoto
     }
+    
+//    private func photoImageForTask() -> UIImage {
+//
+//        if let _ = localStatusPhoto {
+//        } else {
+//            if let _ = taskToEdit?.statusPhoto {
+//                localStatusPhoto = UIImage(data: taskToEdit!.statusPhoto!)
+//            } else {
+//                // The default image is in the bundle, to it is ok to unwrap
+//                localStatusPhoto = defaultTaskStatusPhoto
+//            }
+//        }
+//        
+//        return localStatusPhoto!
+//    }
     
     private func stringForTaskDate(taskDate: NSDate?) -> String? {
         return (taskDate != nil) ? NSDateFormatter.localizedStringFromDate(taskDate!, dateStyle: .ShortStyle, timeStyle: .ShortStyle) : nil
@@ -259,7 +293,7 @@ class MSGCreateAndEditViewController: UIViewController,
     
     private func validateNewTaskDates() {
         if taskStatusSegmentedControl.selectedSegmentIndex == MSGTask.TaskStatus.New.rawValue {
-            if localDueDate != nil {
+            if let _ = localDueDate {
                 if ((localStatusDate!.compare(localDueDate!) == .OrderedSame) ||
                     (localStatusDate!.compare(localDueDate!) == .OrderedAscending)) {
                     reportUpdatedTask()
@@ -275,11 +309,14 @@ class MSGCreateAndEditViewController: UIViewController,
     }
     
     private func reportUpdatedTask() {
+        
         let updatedTask = MSGTask(newTaskTitle: taskTitleTextField.text!, // Previously validated that taskTitle is not nil/empty
                                     newTaskTaskDescription: taskDescriptionTextView.text,
                                     newTaskDueDate: localDueDate,
                                     newTaskStatusInt: taskStatusSegmentedControl.selectedSegmentIndex,
-                                    newTaskStatusDate: localStatusDate!)
+                                    newTaskStatusDate: localStatusDate!,
+                                    newTaskStatusPhoto: !(MSGCreateAndEditViewController.defaultTaskStatusPhoto.isEqual(localStatusPhoto)) ? UIImagePNGRepresentation(localStatusPhoto) : nil
+        )
         
         delegate?.reportUpdatedTaskToDelegate(updatedTask)
         navigationController?.popViewControllerAnimated(true)

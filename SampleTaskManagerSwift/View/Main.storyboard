@@ -140,7 +140,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Vmi-o4-5jh">
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                 <subviews>
-                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ogb-iW-M66" userLabel="Content View">
+                                    <view clipsSubviews="YES" contentMode="scaleAspectFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ogb-iW-M66" userLabel="Content View">
                                         <rect key="frame" x="0.0" y="0.0" width="600" height="441"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kia-08-Tzn">
@@ -235,7 +235,7 @@
                                                     <outlet property="delegate" destination="ywX-AT-Qdr" id="osn-9b-spN"/>
                                                 </connections>
                                             </textField>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lion_3" translatesAutoresizingMaskIntoConstraints="NO" id="ctn-7Z-tWc">
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ctn-7Z-tWc">
                                                 <rect key="frame" x="129" y="291" width="130" height="130"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="130" id="J8Q-2L-S3n"/>
@@ -248,6 +248,12 @@
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="px2-ig-NNG">
+                                                <rect key="frame" x="296" y="295" width="22" height="22"/>
+                                                <connections>
+                                                    <action selector="takePhoto:" destination="ywX-AT-Qdr" eventType="touchUpInside" id="nYJ-N6-C2E"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -420,9 +426,6 @@
             <point key="canvasLocation" x="488" y="528"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="lion_3" width="480" height="322"/>
-    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="hxE-qg-N6P"/>
     </inferredMetricsTieBreakers>

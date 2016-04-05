@@ -28,6 +28,7 @@ class MSGTask: NSObject, NSCoding {
         static let dueDateKey = "dueDate"
         static let statusIntKey = "status"
         static let statusDateKey = "statusDate"
+        static let statusPhotoKey = "statusPhoto"
     }
     
     // MARK: - Stored Properties
@@ -36,6 +37,7 @@ class MSGTask: NSObject, NSCoding {
     var dueDate: NSDate?
     var status: TaskStatus
     var statusDate: NSDate
+    var statusPhoto: NSData?
     
     // MARK: - Initializers
     init(taskTitle: String) {
@@ -50,14 +52,16 @@ class MSGTask: NSObject, NSCoding {
                      newTaskTaskDescription: String?,
                      newTaskDueDate: NSDate?,
                      newTaskStatusInt: Int,
-                     newTaskStatusDate: NSDate) {
+                     newTaskStatusDate: NSDate,
+                     newTaskStatusPhoto: NSData?) {
             
-            self.init(taskTitle: newTaskTitle)
-            
-            self.taskDescription = newTaskTaskDescription
-            self.dueDate = newTaskDueDate
-            self.status = TaskStatus(rawValue: newTaskStatusInt) ?? .New
-            self.statusDate = newTaskStatusDate
+        self.init(taskTitle: newTaskTitle)
+
+        self.taskDescription = newTaskTaskDescription
+        self.dueDate = newTaskDueDate
+        self.status = TaskStatus(rawValue: newTaskStatusInt) ?? .New
+        self.statusDate = newTaskStatusDate
+        self.statusPhoto = newTaskStatusPhoto
     }
     
     // MARK: - NSCoding
@@ -67,6 +71,7 @@ class MSGTask: NSObject, NSCoding {
         aCoder.encodeObject(dueDate, forKey: MSGTaskPropertyKey.dueDateKey)
         aCoder.encodeInteger(status.rawValue, forKey: MSGTaskPropertyKey.statusIntKey)
         aCoder.encodeObject(statusDate, forKey: MSGTaskPropertyKey.statusDateKey)
+        aCoder.encodeObject(statusPhoto, forKey: MSGTaskPropertyKey.statusPhotoKey)
     }
     
     required convenience init(coder aDecoder: NSCoder) {
@@ -75,15 +80,16 @@ class MSGTask: NSObject, NSCoding {
         let archivedDueDate = aDecoder.decodeObjectForKey(MSGTaskPropertyKey.dueDateKey) as? NSDate
         let archivedStatusInt = aDecoder.decodeIntegerForKey(MSGTaskPropertyKey.statusIntKey)
         let archivedStatusDate = aDecoder.decodeObjectForKey(MSGTaskPropertyKey.statusDateKey) as! NSDate
+        let archivedStatusPhoto = aDecoder.decodeObjectForKey(MSGTaskPropertyKey.statusPhotoKey) as? NSData
         
         self.init(newTaskTitle: archivedTitle,
                   newTaskTaskDescription: archivedTaskDescription,
                   newTaskDueDate: archivedDueDate,
                   newTaskStatusInt: archivedStatusInt,
-                  newTaskStatusDate: archivedStatusDate)
+                  newTaskStatusDate: archivedStatusDate,
+                  newTaskStatusPhoto: archivedStatusPhoto)
     }
-    
-    }
+}
 
 // MARK: Operator Override
 func ==(left:MSGTask, right: MSGTask) -> Bool {

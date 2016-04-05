@@ -53,7 +53,7 @@ class MSGDatePickerViewController: UIViewController {
     
     override  var preferredContentSize: CGSize {
         get {                           // presentingViewController - whichever view controller is presenting you
-                                        // checking for != nill assures that the bounds are set
+                                        // checking for != nil assures that the bounds are set
             if taskDatePicker != nil && presentingViewController != nil {
                 return taskDatePicker.sizeThatFits(presentingViewController!.view.bounds.size)
             } else {
