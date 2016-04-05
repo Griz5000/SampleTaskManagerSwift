@@ -53,6 +53,7 @@ class MSGCreateAndEditViewController: UIViewController,
     @IBOutlet weak var taskDueDateTextField: UITextField!
     @IBOutlet weak var taskStatusSegmentedControl: UISegmentedControl!
     @IBOutlet weak var taskStatusDateTextField: UITextField!
+    @IBOutlet weak var tastkStatusPhoto: UIImageView!
     
     // MARK: - View Controller Delegate Methods
     override func viewDidLoad() {

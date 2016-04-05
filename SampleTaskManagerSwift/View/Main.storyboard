@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
     </dependencies>
@@ -140,7 +141,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="600" height="536"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Ogb-iW-M66" userLabel="Content View">
-                                        <rect key="frame" x="0.0" y="0.0" width="600" height="303"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="441"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="kia-08-Tzn">
                                                 <rect key="frame" x="20" y="22" width="109" height="25"/>
@@ -234,17 +235,33 @@
                                                     <outlet property="delegate" destination="ywX-AT-Qdr" id="osn-9b-spN"/>
                                                 </connections>
                                             </textField>
+                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" tag="101" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="lion_3" translatesAutoresizingMaskIntoConstraints="NO" id="ctn-7Z-tWc">
+                                                <rect key="frame" x="129" y="291" width="130" height="130"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="130" id="J8Q-2L-S3n"/>
+                                                    <constraint firstAttribute="width" secondItem="ctn-7Z-tWc" secondAttribute="height" multiplier="1:1" id="uX5-0d-U2V"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status Photo:" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="3SR-GZ-gwE">
+                                                <rect key="frame" x="20" y="291" width="109" height="15"/>
+                                                <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="13"/>
+                                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="rv3-lb-vGC" firstAttribute="leading" secondItem="Ogb-iW-M66" secondAttribute="centerX" multiplier="0.43" id="054-qL-Gxo"/>
                                             <constraint firstItem="3oh-KF-zQp" firstAttribute="leading" secondItem="rv3-lb-vGC" secondAttribute="leading" id="0vu-9V-raU"/>
                                             <constraint firstAttribute="trailing" secondItem="rv3-lb-vGC" secondAttribute="trailing" constant="20" symbolic="YES" id="111-y1-dRd"/>
+                                            <constraint firstItem="ctn-7Z-tWc" firstAttribute="top" secondItem="N0p-FE-MTP" secondAttribute="bottom" constant="8" symbolic="YES" id="1sV-gb-Poa"/>
                                             <constraint firstItem="ciJ-pZ-jRL" firstAttribute="leading" secondItem="kia-08-Tzn" secondAttribute="leading" id="2WS-va-cks"/>
                                             <constraint firstItem="N0p-FE-MTP" firstAttribute="leading" secondItem="rv3-lb-vGC" secondAttribute="leading" id="3Ex-IL-IQH"/>
                                             <constraint firstItem="dQK-ky-b9v" firstAttribute="leading" secondItem="kia-08-Tzn" secondAttribute="leading" id="3UT-RR-cSf"/>
                                             <constraint firstItem="eFf-CN-Sbb" firstAttribute="width" secondItem="rv3-lb-vGC" secondAttribute="width" id="3WF-lX-vwA"/>
+                                            <constraint firstItem="3SR-GZ-gwE" firstAttribute="width" secondItem="kia-08-Tzn" secondAttribute="width" id="3Yh-Ke-tSi"/>
                                             <constraint firstItem="kia-08-Tzn" firstAttribute="leading" secondItem="Ogb-iW-M66" secondAttribute="leading" constant="20" symbolic="YES" id="87w-Ah-huf"/>
+                                            <constraint firstItem="ctn-7Z-tWc" firstAttribute="leading" secondItem="rv3-lb-vGC" secondAttribute="leading" id="89g-Dr-q72"/>
                                             <constraint firstItem="dQK-ky-b9v" firstAttribute="width" secondItem="kia-08-Tzn" secondAttribute="width" id="8pI-FS-mYF"/>
                                             <constraint firstItem="3oh-KF-zQp" firstAttribute="top" secondItem="rv3-lb-vGC" secondAttribute="bottom" constant="8" symbolic="YES" id="AKQ-kr-PCJ"/>
                                             <constraint firstItem="eFf-CN-Sbb" firstAttribute="top" secondItem="UPb-8T-RCW" secondAttribute="bottom" constant="8" symbolic="YES" id="AzM-Ck-Gie"/>
@@ -260,8 +277,9 @@
                                             <constraint firstItem="UPb-8T-RCW" firstAttribute="leading" secondItem="rv3-lb-vGC" secondAttribute="leading" id="Ms6-nP-g4W"/>
                                             <constraint firstItem="H0T-dE-Bso" firstAttribute="top" secondItem="UPb-8T-RCW" secondAttribute="top" id="OJU-Bq-gEj"/>
                                             <constraint firstItem="N0p-FE-MTP" firstAttribute="top" secondItem="eFf-CN-Sbb" secondAttribute="bottom" constant="8" symbolic="YES" id="OX7-Vy-jLx"/>
+                                            <constraint firstItem="3SR-GZ-gwE" firstAttribute="leading" secondItem="kia-08-Tzn" secondAttribute="leading" id="OgW-Ff-kEI"/>
+                                            <constraint firstItem="3SR-GZ-gwE" firstAttribute="top" secondItem="ctn-7Z-tWc" secondAttribute="top" id="Sxo-5h-EE9"/>
                                             <constraint firstItem="Yrz-Qj-KMs" firstAttribute="width" secondItem="kia-08-Tzn" secondAttribute="width" id="VcX-JN-mwn"/>
-                                            <constraint firstAttribute="bottom" secondItem="N0p-FE-MTP" secondAttribute="bottom" constant="20" symbolic="YES" id="Ym2-hS-9kh"/>
                                             <constraint firstItem="rv3-lb-vGC" firstAttribute="top" secondItem="Ogb-iW-M66" secondAttribute="top" constant="20" symbolic="YES" id="aIL-mU-UfF"/>
                                             <constraint firstItem="dQK-ky-b9v" firstAttribute="top" secondItem="N0p-FE-MTP" secondAttribute="top" id="aNR-Vo-Z87"/>
                                             <constraint firstItem="UPb-8T-RCW" firstAttribute="top" secondItem="3oh-KF-zQp" secondAttribute="bottom" constant="8" symbolic="YES" id="eP0-ou-r54"/>
@@ -272,6 +290,7 @@
                                             <constraint firstItem="kia-08-Tzn" firstAttribute="centerY" secondItem="rv3-lb-vGC" secondAttribute="centerY" id="jeL-cZ-YdC"/>
                                             <constraint firstItem="Yrz-Qj-KMs" firstAttribute="leading" secondItem="kia-08-Tzn" secondAttribute="leading" id="klg-0P-gbr"/>
                                             <constraint firstItem="H0T-dE-Bso" firstAttribute="leading" secondItem="kia-08-Tzn" secondAttribute="leading" id="maU-Aj-sgk"/>
+                                            <constraint firstAttribute="bottom" secondItem="ctn-7Z-tWc" secondAttribute="bottom" constant="20" symbolic="YES" id="orp-0r-nlr"/>
                                         </constraints>
                                         <variation key="default">
                                             <mask key="constraints">
@@ -285,7 +304,7 @@
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="Ogb-iW-M66" firstAttribute="top" secondItem="Vmi-o4-5jh" secondAttribute="top" id="3P1-tE-CvI"/>
-                                    <constraint firstAttribute="bottom" secondItem="Ogb-iW-M66" secondAttribute="bottom" constant="196" id="I0v-JJ-qaf"/>
+                                    <constraint firstAttribute="bottom" secondItem="Ogb-iW-M66" secondAttribute="bottom" constant="20" symbolic="YES" id="I0v-JJ-qaf"/>
                                     <constraint firstAttribute="trailing" secondItem="Ogb-iW-M66" secondAttribute="trailing" id="nGt-Ch-AoQ"/>
                                     <constraint firstItem="Ogb-iW-M66" firstAttribute="leading" secondItem="Vmi-o4-5jh" secondAttribute="leading" id="tIt-Cr-1di"/>
                                 </constraints>
@@ -337,6 +356,7 @@
                         <outlet property="taskStatusDateTextField" destination="N0p-FE-MTP" id="C1b-ed-2Bo"/>
                         <outlet property="taskStatusSegmentedControl" destination="eFf-CN-Sbb" id="ZVR-xj-oXv"/>
                         <outlet property="taskTitleTextField" destination="rv3-lb-vGC" id="qN3-fl-UEy"/>
+                        <outlet property="tastkStatusPhoto" destination="ctn-7Z-tWc" id="IWs-Ux-Kiv"/>
                         <segue destination="6jZ-l0-RNT" kind="popoverPresentation" identifier="DatePickerSegue" popoverAnchorView="UPb-8T-RCW" id="aOv-A2-ITC">
                             <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                         </segue>
@@ -400,6 +420,9 @@
             <point key="canvasLocation" x="488" y="528"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="lion_3" width="480" height="322"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="hxE-qg-N6P"/>
     </inferredMetricsTieBreakers>
