@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		4C4BDF741CAEE46400C451F9 /* SampleTaskManagerSwiftUITestsUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C4BDF731CAEE46400C451F9 /* SampleTaskManagerSwiftUITestsUtilities.swift */; };
+		4C9113551CB5614B00A85DA2 /* MSGDisplayAndUpdatePhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9113541CB5614B00A85DA2 /* MSGDisplayAndUpdatePhotoViewController.swift */; };
 		4C9C5A4F1C90A3CE00691036 /* MSGTaskListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9C5A4E1C90A3CE00691036 /* MSGTaskListTableViewController.swift */; };
 		4C9C5A511C90A72700691036 /* MSGCreateAndEditViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9C5A501C90A72700691036 /* MSGCreateAndEditViewController.swift */; };
 		4C9C5A531C90B13700691036 /* MSGTaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4C9C5A521C90B13700691036 /* MSGTaskTableViewCell.swift */; };
@@ -43,6 +44,7 @@
 
 /* Begin PBXFileReference section */
 		4C4BDF731CAEE46400C451F9 /* SampleTaskManagerSwiftUITestsUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SampleTaskManagerSwiftUITestsUtilities.swift; sourceTree = "<group>"; };
+		4C9113541CB5614B00A85DA2 /* MSGDisplayAndUpdatePhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MSGDisplayAndUpdatePhotoViewController.swift; path = Controller/MSGDisplayAndUpdatePhotoViewController.swift; sourceTree = "<group>"; };
 		4C9C5A4E1C90A3CE00691036 /* MSGTaskListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MSGTaskListTableViewController.swift; path = Controller/MSGTaskListTableViewController.swift; sourceTree = "<group>"; };
 		4C9C5A501C90A72700691036 /* MSGCreateAndEditViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MSGCreateAndEditViewController.swift; path = Controller/MSGCreateAndEditViewController.swift; sourceTree = "<group>"; };
 		4C9C5A521C90B13700691036 /* MSGTaskTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = MSGTaskTableViewCell.swift; path = View/MSGTaskTableViewCell.swift; sourceTree = "<group>"; };
@@ -176,6 +178,7 @@
 			children = (
 				4C9C5A501C90A72700691036 /* MSGCreateAndEditViewController.swift */,
 				4CD83D2A1C93851F0084F4E6 /* MSGDatePickerViewController.swift */,
+				4C9113541CB5614B00A85DA2 /* MSGDisplayAndUpdatePhotoViewController.swift */,
 				4C9C5A4E1C90A3CE00691036 /* MSGTaskListTableViewController.swift */,
 			);
 			name = Controller;
@@ -314,6 +317,7 @@
 			files = (
 				4C9C5A511C90A72700691036 /* MSGCreateAndEditViewController.swift in Sources */,
 				4CB7D39B1C8DDEA60040BE06 /* MSGTaskListStore.swift in Sources */,
+				4C9113551CB5614B00A85DA2 /* MSGDisplayAndUpdatePhotoViewController.swift in Sources */,
 				4CD83D2B1C9385200084F4E6 /* MSGDatePickerViewController.swift in Sources */,
 				4C9C5A4F1C90A3CE00691036 /* MSGTaskListTableViewController.swift in Sources */,
 				4CB7D3971C8DC04C0040BE06 /* MSGTask.swift in Sources */,

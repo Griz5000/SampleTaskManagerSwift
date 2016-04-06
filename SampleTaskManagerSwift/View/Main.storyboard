@@ -6,6 +6,7 @@
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <capability name="Segues with Peek and Pop" minToolsVersion="7.1"/>
     </dependencies>
     <scenes>
         <!--Task List Table View Controller-->
@@ -235,57 +236,68 @@
                                                     <outlet property="delegate" destination="ywX-AT-Qdr" id="osn-9b-spN"/>
                                                 </connections>
                                             </textField>
-                                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ctn-7Z-tWc">
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" adjustsImageWhenHighlighted="NO" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Tfq-Cg-NVE">
                                                 <rect key="frame" x="129" y="291" width="130" height="130"/>
+                                                <color key="backgroundColor" red="0.7019608021" green="0.7019608021" blue="0.7019608021" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
-                                                    <constraint firstAttribute="height" constant="130" id="J8Q-2L-S3n"/>
-                                                    <constraint firstAttribute="width" secondItem="ctn-7Z-tWc" secondAttribute="height" multiplier="1:1" id="uX5-0d-U2V"/>
+                                                    <constraint firstAttribute="width" secondItem="Tfq-Cg-NVE" secondAttribute="height" multiplier="1:1" id="c55-P6-6w7"/>
+                                                    <constraint firstAttribute="height" constant="130" id="i1A-8i-2Zn"/>
                                                 </constraints>
-                                            </imageView>
+                                                <state key="normal" image="lion_3"/>
+                                                <connections>
+                                                    <segue destination="wvE-Y1-Wfc" kind="show" identifier="PhotoUpdateSegue" id="kTq-9f-AhH">
+                                                        <segue key="commit" inheritsFrom="parent" id="Uxy-H1-HqU"/>
+                                                        <segue key="preview" inheritsFrom="commit" id="7YH-Jv-X87"/>
+                                                    </segue>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="px2-ig-NNG">
+                                                <rect key="frame" x="20" y="314" width="22" height="22"/>
+                                                <connections>
+                                                    <action selector="takePhoto:" destination="ywX-AT-Qdr" eventType="touchUpInside" id="nYJ-N6-C2E"/>
+                                                </connections>
+                                            </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status Photo:" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="3SR-GZ-gwE">
                                                 <rect key="frame" x="20" y="291" width="109" height="15"/>
                                                 <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="13"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="px2-ig-NNG">
-                                                <rect key="frame" x="296" y="295" width="22" height="22"/>
-                                                <connections>
-                                                    <action selector="takePhoto:" destination="ywX-AT-Qdr" eventType="touchUpInside" id="nYJ-N6-C2E"/>
-                                                </connections>
-                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
                                             <constraint firstItem="rv3-lb-vGC" firstAttribute="leading" secondItem="Ogb-iW-M66" secondAttribute="centerX" multiplier="0.43" id="054-qL-Gxo"/>
                                             <constraint firstItem="3oh-KF-zQp" firstAttribute="leading" secondItem="rv3-lb-vGC" secondAttribute="leading" id="0vu-9V-raU"/>
                                             <constraint firstAttribute="trailing" secondItem="rv3-lb-vGC" secondAttribute="trailing" constant="20" symbolic="YES" id="111-y1-dRd"/>
-                                            <constraint firstItem="ctn-7Z-tWc" firstAttribute="top" secondItem="N0p-FE-MTP" secondAttribute="bottom" constant="8" symbolic="YES" id="1sV-gb-Poa"/>
                                             <constraint firstItem="ciJ-pZ-jRL" firstAttribute="leading" secondItem="kia-08-Tzn" secondAttribute="leading" id="2WS-va-cks"/>
                                             <constraint firstItem="N0p-FE-MTP" firstAttribute="leading" secondItem="rv3-lb-vGC" secondAttribute="leading" id="3Ex-IL-IQH"/>
+                                            <constraint firstItem="3SR-GZ-gwE" firstAttribute="top" secondItem="Tfq-Cg-NVE" secondAttribute="top" id="3Tz-cs-A0b"/>
                                             <constraint firstItem="dQK-ky-b9v" firstAttribute="leading" secondItem="kia-08-Tzn" secondAttribute="leading" id="3UT-RR-cSf"/>
                                             <constraint firstItem="eFf-CN-Sbb" firstAttribute="width" secondItem="rv3-lb-vGC" secondAttribute="width" id="3WF-lX-vwA"/>
                                             <constraint firstItem="3SR-GZ-gwE" firstAttribute="width" secondItem="kia-08-Tzn" secondAttribute="width" id="3Yh-Ke-tSi"/>
+                                            <constraint firstItem="px2-ig-NNG" firstAttribute="leading" secondItem="3SR-GZ-gwE" secondAttribute="leading" id="73y-8i-Pmx"/>
                                             <constraint firstItem="kia-08-Tzn" firstAttribute="leading" secondItem="Ogb-iW-M66" secondAttribute="leading" constant="20" symbolic="YES" id="87w-Ah-huf"/>
-                                            <constraint firstItem="ctn-7Z-tWc" firstAttribute="leading" secondItem="rv3-lb-vGC" secondAttribute="leading" id="89g-Dr-q72"/>
                                             <constraint firstItem="dQK-ky-b9v" firstAttribute="width" secondItem="kia-08-Tzn" secondAttribute="width" id="8pI-FS-mYF"/>
                                             <constraint firstItem="3oh-KF-zQp" firstAttribute="top" secondItem="rv3-lb-vGC" secondAttribute="bottom" constant="8" symbolic="YES" id="AKQ-kr-PCJ"/>
+                                            <constraint firstItem="px2-ig-NNG" firstAttribute="top" secondItem="3SR-GZ-gwE" secondAttribute="bottom" constant="8" id="ARB-ml-xt6"/>
                                             <constraint firstItem="eFf-CN-Sbb" firstAttribute="top" secondItem="UPb-8T-RCW" secondAttribute="bottom" constant="8" symbolic="YES" id="AzM-Ck-Gie"/>
                                             <constraint firstItem="Yrz-Qj-KMs" firstAttribute="top" secondItem="3oh-KF-zQp" secondAttribute="top" id="BJk-9r-9So"/>
                                             <constraint firstItem="UPb-8T-RCW" firstAttribute="width" secondItem="rv3-lb-vGC" secondAttribute="width" id="DMf-bs-Eg4"/>
                                             <constraint firstItem="3oh-KF-zQp" firstAttribute="width" secondItem="rv3-lb-vGC" secondAttribute="width" id="EWr-vs-agI"/>
                                             <constraint firstItem="ciJ-pZ-jRL" firstAttribute="width" secondItem="kia-08-Tzn" secondAttribute="width" id="Eis-sH-IK1"/>
                                             <constraint firstItem="eFf-CN-Sbb" firstAttribute="leading" secondItem="rv3-lb-vGC" secondAttribute="leading" id="FEQ-iU-5Xt"/>
+                                            <constraint firstItem="Tfq-Cg-NVE" firstAttribute="top" secondItem="N0p-FE-MTP" secondAttribute="bottom" constant="8" symbolic="YES" id="FnA-gt-tyu"/>
                                             <constraint firstItem="rv3-lb-vGC" firstAttribute="leading" secondItem="kia-08-Tzn" secondAttribute="trailing" id="Fy1-JN-hvn"/>
                                             <constraint firstItem="dQK-ky-b9v" firstAttribute="top" secondItem="N0p-FE-MTP" secondAttribute="bottom" constant="8" symbolic="YES" id="HCm-ao-H8k"/>
                                             <constraint firstItem="ciJ-pZ-jRL" firstAttribute="top" secondItem="eFf-CN-Sbb" secondAttribute="top" id="HbR-Bq-0bE"/>
                                             <constraint firstItem="Yrz-Qj-KMs" firstAttribute="centerY" secondItem="3oh-KF-zQp" secondAttribute="centerY" id="IEr-uX-1IP"/>
+                                            <constraint firstAttribute="bottom" secondItem="Tfq-Cg-NVE" secondAttribute="bottom" constant="20" symbolic="YES" id="IKk-CX-qma"/>
                                             <constraint firstItem="UPb-8T-RCW" firstAttribute="leading" secondItem="rv3-lb-vGC" secondAttribute="leading" id="Ms6-nP-g4W"/>
                                             <constraint firstItem="H0T-dE-Bso" firstAttribute="top" secondItem="UPb-8T-RCW" secondAttribute="top" id="OJU-Bq-gEj"/>
                                             <constraint firstItem="N0p-FE-MTP" firstAttribute="top" secondItem="eFf-CN-Sbb" secondAttribute="bottom" constant="8" symbolic="YES" id="OX7-Vy-jLx"/>
                                             <constraint firstItem="3SR-GZ-gwE" firstAttribute="leading" secondItem="kia-08-Tzn" secondAttribute="leading" id="OgW-Ff-kEI"/>
-                                            <constraint firstItem="3SR-GZ-gwE" firstAttribute="top" secondItem="ctn-7Z-tWc" secondAttribute="top" id="Sxo-5h-EE9"/>
                                             <constraint firstItem="Yrz-Qj-KMs" firstAttribute="width" secondItem="kia-08-Tzn" secondAttribute="width" id="VcX-JN-mwn"/>
+                                            <constraint firstItem="Tfq-Cg-NVE" firstAttribute="leading" secondItem="rv3-lb-vGC" secondAttribute="leading" id="YEM-C4-rFZ"/>
                                             <constraint firstItem="rv3-lb-vGC" firstAttribute="top" secondItem="Ogb-iW-M66" secondAttribute="top" constant="20" symbolic="YES" id="aIL-mU-UfF"/>
                                             <constraint firstItem="dQK-ky-b9v" firstAttribute="top" secondItem="N0p-FE-MTP" secondAttribute="top" id="aNR-Vo-Z87"/>
                                             <constraint firstItem="UPb-8T-RCW" firstAttribute="top" secondItem="3oh-KF-zQp" secondAttribute="bottom" constant="8" symbolic="YES" id="eP0-ou-r54"/>
@@ -296,7 +308,6 @@
                                             <constraint firstItem="kia-08-Tzn" firstAttribute="centerY" secondItem="rv3-lb-vGC" secondAttribute="centerY" id="jeL-cZ-YdC"/>
                                             <constraint firstItem="Yrz-Qj-KMs" firstAttribute="leading" secondItem="kia-08-Tzn" secondAttribute="leading" id="klg-0P-gbr"/>
                                             <constraint firstItem="H0T-dE-Bso" firstAttribute="leading" secondItem="kia-08-Tzn" secondAttribute="leading" id="maU-Aj-sgk"/>
-                                            <constraint firstAttribute="bottom" secondItem="ctn-7Z-tWc" secondAttribute="bottom" constant="20" symbolic="YES" id="orp-0r-nlr"/>
                                         </constraints>
                                         <variation key="default">
                                             <mask key="constraints">
@@ -360,9 +371,9 @@
                         <outlet property="taskDescriptionTextView" destination="YKy-VM-QHC" id="cql-XZ-YsR"/>
                         <outlet property="taskDueDateTextField" destination="UPb-8T-RCW" id="fbS-rN-9Jg"/>
                         <outlet property="taskStatusDateTextField" destination="N0p-FE-MTP" id="C1b-ed-2Bo"/>
+                        <outlet property="taskStatusPhotoButton" destination="Tfq-Cg-NVE" id="mzc-Mx-r24"/>
                         <outlet property="taskStatusSegmentedControl" destination="eFf-CN-Sbb" id="ZVR-xj-oXv"/>
                         <outlet property="taskTitleTextField" destination="rv3-lb-vGC" id="qN3-fl-UEy"/>
-                        <outlet property="tastkStatusPhoto" destination="ctn-7Z-tWc" id="IWs-Ux-Kiv"/>
                         <segue destination="6jZ-l0-RNT" kind="popoverPresentation" identifier="DatePickerSegue" popoverAnchorView="UPb-8T-RCW" id="aOv-A2-ITC">
                             <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
                         </segue>
@@ -371,6 +382,38 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iQK-GL-lN2" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2054" y="528"/>
+        </scene>
+        <!--Display And Update Photo View Controller-->
+        <scene sceneID="fTw-T0-H5a">
+            <objects>
+                <viewController id="wvE-Y1-Wfc" customClass="MSGDisplayAndUpdatePhotoViewController" customModule="SampleTaskManagerSwift" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="l5Q-nf-6S0"/>
+                        <viewControllerLayoutGuide type="bottom" id="0CH-FA-xMa"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="eAb-UI-XD6">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="TTg-c8-cMh">
+                                <rect key="frame" x="0.0" y="64" width="600" height="536"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="0CH-FA-xMa" firstAttribute="top" secondItem="TTg-c8-cMh" secondAttribute="bottom" id="DDg-Ek-gil"/>
+                            <constraint firstItem="TTg-c8-cMh" firstAttribute="top" secondItem="l5Q-nf-6S0" secondAttribute="bottom" id="hj4-2C-ntg"/>
+                            <constraint firstAttribute="trailing" secondItem="TTg-c8-cMh" secondAttribute="trailing" id="qCG-eN-KEg"/>
+                            <constraint firstItem="TTg-c8-cMh" firstAttribute="leading" secondItem="eAb-UI-XD6" secondAttribute="leading" id="yuV-f7-WIq"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="photoImageView" destination="TTg-c8-cMh" id="inb-be-sHH"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ld9-a0-9ND" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2054" y="1260"/>
         </scene>
         <!--Date Picker View Controller-->
         <scene sceneID="0yD-39-CMN">
@@ -426,7 +469,11 @@
             <point key="canvasLocation" x="488" y="528"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="lion_3" width="480" height="322"/>
+    </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="kTq-9f-AhH"/>
         <segue reference="hxE-qg-N6P"/>
     </inferredMetricsTieBreakers>
 </document>

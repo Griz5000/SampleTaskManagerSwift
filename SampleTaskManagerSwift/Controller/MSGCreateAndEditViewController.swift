@@ -35,6 +35,8 @@ class MSGCreateAndEditViewController: UIViewController,
     // MARK: - Constants
     private static let taskStatusSegmentedControlReset = MSGTask.TaskStatus.New.rawValue
     private static let datePickerSegueIdentifier = "DatePickerSegue"
+    private static let photoUpdateSegueIdentifier = "PhotoUpdateSegue"
+
     private static let defaultTaskStatusPhotoName = "lion_3"
     private static let fakeTaskStatusPhotoName = "lion_2"
 
@@ -59,7 +61,7 @@ class MSGCreateAndEditViewController: UIViewController,
     @IBOutlet weak var taskDueDateTextField: UITextField!
     @IBOutlet weak var taskStatusSegmentedControl: UISegmentedControl!
     @IBOutlet weak var taskStatusDateTextField: UITextField!
-    @IBOutlet weak var tastkStatusPhoto: UIImageView!
+    @IBOutlet weak var taskStatusPhotoButton: UIButton!
     
     // MARK: - View Controller Delegate Methods
     override func viewDidLoad() {
@@ -69,6 +71,8 @@ class MSGCreateAndEditViewController: UIViewController,
         registerForKeyboardNotifications()
         
         taskTitleTextField.enabled = (taskToEdit == nil) // Editing the title of an existing task is diallowed
+        
+        taskStatusPhotoButton.imageView?.contentMode = .ScaleAspectFill
         
         if let _ = taskToEdit?.statusPhoto {
             localStatusPhoto = UIImage(data: taskToEdit!.statusPhoto!)!
@@ -89,7 +93,6 @@ class MSGCreateAndEditViewController: UIViewController,
     
     // MARK: - Target / Action Methods
     @IBAction func clearButtonSelected(sender: UIBarButtonItem) {
-        
         localStatusPhoto = MSGCreateAndEditViewController.defaultTaskStatusPhoto;
         updateUI(nil)
     }
@@ -106,7 +109,7 @@ class MSGCreateAndEditViewController: UIViewController,
     @IBAction func takePhoto(sender: UIButton) {
         // TODO: Delete this method and button in Storyboard
         localStatusPhoto = MSGCreateAndEditViewController.fakeTaskStatusPhoto
-        tastkStatusPhoto.image = localStatusPhoto
+        taskStatusPhotoButton.setImage(localStatusPhoto, forState: .Normal)
     }
     
     // MARK: - Scroll View Delegate
@@ -212,6 +215,9 @@ class MSGCreateAndEditViewController: UIViewController,
                 if let pickerPopoverPresentationViewController = datePickerVC.popoverPresentationController {
                     pickerPopoverPresentationViewController.delegate = self
                 }
+            case MSGCreateAndEditViewController.photoUpdateSegueIdentifier:
+                let photoUpdateVC = segue.destinationViewController as! MSGDisplayAndUpdatePhotoViewController
+                photoUpdateVC.photoToUpdate = localStatusPhoto
             default: break
             }
         }
@@ -251,7 +257,7 @@ class MSGCreateAndEditViewController: UIViewController,
         localStatusDate = thisTask?.statusDate ?? NSDate()
         taskStatusDateTextField.text = stringForTaskDate(localStatusDate)
         
-        tastkStatusPhoto.image = localStatusPhoto
+        taskStatusPhotoButton.setImage(localStatusPhoto, forState: .Normal)
     }
     
     private func stringForTaskDate(taskDate: NSDate?) -> String? {
