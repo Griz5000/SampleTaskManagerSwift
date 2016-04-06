@@ -106,7 +106,7 @@ class MSGCreateAndEditViewController: UIViewController,
     @IBAction func takePhoto(sender: UIButton) {
         // TODO: Delete this method and button in Storyboard
         localStatusPhoto = MSGCreateAndEditViewController.fakeTaskStatusPhoto
-        updateUI(taskToEdit)
+        tastkStatusPhoto.image = localStatusPhoto
     }
     
     // MARK: - Scroll View Delegate
@@ -251,24 +251,8 @@ class MSGCreateAndEditViewController: UIViewController,
         localStatusDate = thisTask?.statusDate ?? NSDate()
         taskStatusDateTextField.text = stringForTaskDate(localStatusDate)
         
-//        tastkStatusPhoto.image = photoImageForTask()
         tastkStatusPhoto.image = localStatusPhoto
     }
-    
-//    private func photoImageForTask() -> UIImage {
-//
-//        if let _ = localStatusPhoto {
-//        } else {
-//            if let _ = taskToEdit?.statusPhoto {
-//                localStatusPhoto = UIImage(data: taskToEdit!.statusPhoto!)
-//            } else {
-//                // The default image is in the bundle, to it is ok to unwrap
-//                localStatusPhoto = defaultTaskStatusPhoto
-//            }
-//        }
-//        
-//        return localStatusPhoto!
-//    }
     
     private func stringForTaskDate(taskDate: NSDate?) -> String? {
         return (taskDate != nil) ? NSDateFormatter.localizedStringFromDate(taskDate!, dateStyle: .ShortStyle, timeStyle: .ShortStyle) : nil
