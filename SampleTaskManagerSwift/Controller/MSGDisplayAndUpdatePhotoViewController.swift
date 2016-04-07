@@ -32,6 +32,19 @@ class MSGDisplayAndUpdatePhotoViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
     
+    override func previewActionItems() -> [UIPreviewActionItem] {
+        let viewAction = UIPreviewAction(title: "View", style: .Default) { (previewAction: UIPreviewAction, previewViewController: UIViewController) -> Void in
+            
+            print("View Action")
+        }
+        
+        let cameraAction = UIPreviewAction(title: "Camera", style: .Default) { (action: UIPreviewAction, viewController: UIViewController) -> Void in
+            
+            print("Camera Action")
+        }
+        
+        return [viewAction, cameraAction]
+    }
 
     /*
     // MARK: - Navigation
