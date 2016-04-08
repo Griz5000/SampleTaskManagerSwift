@@ -112,7 +112,7 @@ class SampleTaskManagerSwiftTests: XCTestCase {
         let badStatus: Int = 13
         
         // When
-        let newTask = MSGTask(newTaskTitle: taskTitleForBadStatus, newTaskTaskDescription: nil, newTaskDueDate: nil, newTaskStatusInt: badStatus, newTaskStatusDate: nowDate)
+        let newTask = MSGTask(newTaskTitle: taskTitleForBadStatus, newTaskTaskDescription: nil, newTaskDueDate: nil, newTaskStatusInt: badStatus, newTaskStatusDate: nowDate, newTaskStatusPhoto: nil)
         
         // Then
         XCTAssertEqual(newTask.title, taskTitleForBadStatus)
@@ -123,7 +123,7 @@ class SampleTaskManagerSwiftTests: XCTestCase {
         // Given
         let nowDate = NSDate()
         let badStatus: Int = 13
-        let newTask = MSGTask(newTaskTitle: taskTitleForBadStatus, newTaskTaskDescription: nil, newTaskDueDate: nil, newTaskStatusInt: badStatus, newTaskStatusDate: nowDate)
+        let newTask = MSGTask(newTaskTitle: taskTitleForBadStatus, newTaskTaskDescription: nil, newTaskDueDate: nil, newTaskStatusInt: badStatus, newTaskStatusDate: nowDate, newTaskStatusPhoto: nil)
         let badTaskOrder: Int = 42
         
         // When
