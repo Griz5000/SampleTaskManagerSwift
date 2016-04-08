@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MobileCoreServices
 
 /**
  Mechanism to provide the new or updated `taskToEdit` to the calling View Controller
@@ -23,6 +24,8 @@ class MSGCreateAndEditViewController: UIViewController,
                                         UITextViewDelegate,
                                         UIScrollViewDelegate,
                                         UIPopoverPresentationControllerDelegate,
+                                        UINavigationControllerDelegate,
+                                        UIImagePickerControllerDelegate,
                                         DateReportingDelegate {
     
     // MARK: - Types
@@ -38,14 +41,12 @@ class MSGCreateAndEditViewController: UIViewController,
     private static let photoUpdateSegueIdentifier = "PhotoUpdateSegue"
 
     private static let defaultTaskStatusPhotoName = "lion_3"
-    private static let fakeTaskStatusPhotoName = "lion_2"
 
     // MARK: - Stored Properties
     var taskToEdit: MSGTask?
     
     private weak var activeField: AnyObject?
     private static let defaultTaskStatusPhoto = UIImage(named: MSGCreateAndEditViewController.defaultTaskStatusPhotoName)!
-    private static let fakeTaskStatusPhoto = UIImage(named: MSGCreateAndEditViewController.fakeTaskStatusPhotoName)!
     
     private var localDueDate: NSDate?
     private var localStatusDate: NSDate?
@@ -107,9 +108,7 @@ class MSGCreateAndEditViewController: UIViewController,
     }
     
     @IBAction func takePhoto(sender: UIButton) {
-        // TODO: Delete this method and button in Storyboard
-        localStatusPhoto = MSGCreateAndEditViewController.fakeTaskStatusPhoto
-        taskStatusPhotoButton.setImage(localStatusPhoto, forState: .Normal)
+        presentCameraForTaskStatusPhoto()
     }
     
     // MARK: - Scroll View Delegate
@@ -243,6 +242,15 @@ class MSGCreateAndEditViewController: UIViewController,
         }
     }
     
+    // MARK: - UIImagePickerControllerDelegate
+    /** Store the image selected by the user */
+    func imagePickerController(picker: UIImagePickerController, didFinishPickingImage chosenImage: UIImage, editingInfo: [String : AnyObject]?) {
+        localStatusPhoto = chosenImage
+        taskStatusPhotoButton.setImage(localStatusPhoto, forState: .Normal)
+        
+        picker.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     // MARK: - Private Utility Methods
     private func updateUI(thisTask: MSGTask?) {
         
@@ -310,6 +318,20 @@ class MSGCreateAndEditViewController: UIViewController,
         
         delegate?.reportUpdatedTaskToDelegate(updatedTask)
         navigationController?.popViewControllerAnimated(true)
+    }
+    
+    func presentCameraForTaskStatusPhoto() {
+        if (UIImagePickerController.isSourceTypeAvailable(UIImagePickerControllerSourceType.Camera)){
+            let picker = UIImagePickerController()
+            picker.delegate = self
+            picker.sourceType = UIImagePickerControllerSourceType.Camera
+            picker.mediaTypes = [kUTTypeImage as String]
+            picker.allowsEditing = true
+            self.presentViewController(picker, animated: true, completion: nil)
+        }
+        else{
+            print("No Camera.")
+        }
     }
     
     private func displayTaskTitleNilAlert() {
