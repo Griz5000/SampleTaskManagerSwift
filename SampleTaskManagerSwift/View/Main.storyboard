@@ -407,6 +407,13 @@
                             <constraint firstItem="TTg-c8-cMh" firstAttribute="leading" secondItem="eAb-UI-XD6" secondAttribute="leading" id="yuV-f7-WIq"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="Ykl-pg-Qjh">
+                        <barButtonItem key="rightBarButtonItem" systemItem="camera" id="csn-jr-8Kd">
+                            <connections>
+                                <action selector="cameraSelected:" destination="wvE-Y1-Wfc" id="tVw-LV-aLt"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="photoImageView" destination="TTg-c8-cMh" id="inb-be-sHH"/>
                     </connections>

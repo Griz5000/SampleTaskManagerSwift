@@ -8,13 +8,26 @@
 
 import UIKit
 
+/**
+ Display the camera UI for replacing the photo
+ */
+protocol UpdateTaskStatusPhotoDelegate {
+    func taskStatusPhotoCamerSelected()
+}
+
 /** 
- Display the
+ Display and edit the status photo
  */
 class MSGDisplayAndUpdatePhotoViewController: UIViewController {
 
     // MARK: - Stored Properties
-    var photoToUpdate: UIImage?
+    var photoToUpdate: UIImage? {
+        didSet {
+            updateDisplay()
+        }
+    }
+    
+    var delegate: UpdateTaskStatusPhotoDelegate?
 
     // MARK: - Outlets
     @IBOutlet weak var photoImageView: UIImageView!
@@ -24,7 +37,7 @@ class MSGDisplayAndUpdatePhotoViewController: UIViewController {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
-        photoImageView.image = photoToUpdate
+        updateDisplay()
     }
 
     override func didReceiveMemoryWarning() {
@@ -33,27 +46,23 @@ class MSGDisplayAndUpdatePhotoViewController: UIViewController {
     }
     
     override func previewActionItems() -> [UIPreviewActionItem] {
-        let viewAction = UIPreviewAction(title: "View", style: .Default) { (previewAction: UIPreviewAction, previewViewController: UIViewController) -> Void in
-            
-            print("View Action")
-        }
         
-        let cameraAction = UIPreviewAction(title: "Camera", style: .Default) { (action: UIPreviewAction, viewController: UIViewController) -> Void in
+        let cameraAction = UIPreviewAction(title: "Replace Photo", style: .Default) { (action: UIPreviewAction, viewController: UIViewController) -> Void in
             
             print("Camera Action")
+            self.delegate?.taskStatusPhotoCamerSelected()
         }
         
-        return [viewAction, cameraAction]
+        return [cameraAction]
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    
+    // MARK: - Target / Action Methods
+    @IBAction func cameraSelected(sender: AnyObject) {
+        delegate?.taskStatusPhotoCamerSelected()
     }
-    */
-
+    
+    // MARK: - Private Utility Methods
+    private func updateDisplay() {
+        photoImageView?.image = photoToUpdate
+    }
 }

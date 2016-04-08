@@ -26,7 +26,8 @@ class MSGCreateAndEditViewController: UIViewController,
                                         UIPopoverPresentationControllerDelegate,
                                         UINavigationControllerDelegate,
                                         UIImagePickerControllerDelegate,
-                                        DateReportingDelegate {
+                                        DateReportingDelegate,
+                                        UpdateTaskStatusPhotoDelegate {
     
     // MARK: - Types
     enum TaskTextFieldTags: Int {
@@ -51,6 +52,8 @@ class MSGCreateAndEditViewController: UIViewController,
     private var localDueDate: NSDate?
     private var localStatusDate: NSDate?
     private var localStatusPhoto = MSGCreateAndEditViewController.defaultTaskStatusPhoto
+    
+    private var photoUpdateVC: MSGDisplayAndUpdatePhotoViewController?
     
     var delegate:  UpdatedTaskReportingDelegate?
     
@@ -215,8 +218,9 @@ class MSGCreateAndEditViewController: UIViewController,
                     pickerPopoverPresentationViewController.delegate = self
                 }
             case MSGCreateAndEditViewController.photoUpdateSegueIdentifier:
-                let photoUpdateVC = segue.destinationViewController as! MSGDisplayAndUpdatePhotoViewController
-                photoUpdateVC.photoToUpdate = localStatusPhoto
+                photoUpdateVC = segue.destinationViewController as? MSGDisplayAndUpdatePhotoViewController
+                photoUpdateVC?.photoToUpdate = localStatusPhoto
+                photoUpdateVC?.delegate = self
             default: break
             }
         }
@@ -242,11 +246,18 @@ class MSGCreateAndEditViewController: UIViewController,
         }
     }
     
+    // MARK: - UpdateTaskStatusPhotoDelegate Method
+    func taskStatusPhotoCamerSelected() {
+        presentCameraForTaskStatusPhoto()
+    }
+    
     // MARK: - UIImagePickerControllerDelegate
     /** Store the image selected by the user */
     func imagePickerController(picker: UIImagePickerController, didFinishPickingImage chosenImage: UIImage, editingInfo: [String : AnyObject]?) {
         localStatusPhoto = chosenImage
         taskStatusPhotoButton.setImage(localStatusPhoto, forState: .Normal)
+        
+        photoUpdateVC?.photoToUpdate = localStatusPhoto
         
         picker.dismissViewControllerAnimated(true, completion: nil)
     }
