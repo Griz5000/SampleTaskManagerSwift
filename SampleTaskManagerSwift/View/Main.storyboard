@@ -251,12 +251,6 @@
                                                     </segue>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="contactAdd" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="px2-ig-NNG">
-                                                <rect key="frame" x="20" y="314" width="22" height="22"/>
-                                                <connections>
-                                                    <action selector="takePhoto:" destination="ywX-AT-Qdr" eventType="touchUpInside" id="nYJ-N6-C2E"/>
-                                                </connections>
-                                            </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status Photo:" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="3SR-GZ-gwE">
                                                 <rect key="frame" x="20" y="291" width="109" height="15"/>
                                                 <fontDescription key="fontDescription" name="ArialMT" family="Arial" pointSize="13"/>
@@ -275,11 +269,9 @@
                                             <constraint firstItem="dQK-ky-b9v" firstAttribute="leading" secondItem="kia-08-Tzn" secondAttribute="leading" id="3UT-RR-cSf"/>
                                             <constraint firstItem="eFf-CN-Sbb" firstAttribute="width" secondItem="rv3-lb-vGC" secondAttribute="width" id="3WF-lX-vwA"/>
                                             <constraint firstItem="3SR-GZ-gwE" firstAttribute="width" secondItem="kia-08-Tzn" secondAttribute="width" id="3Yh-Ke-tSi"/>
-                                            <constraint firstItem="px2-ig-NNG" firstAttribute="leading" secondItem="3SR-GZ-gwE" secondAttribute="leading" id="73y-8i-Pmx"/>
                                             <constraint firstItem="kia-08-Tzn" firstAttribute="leading" secondItem="Ogb-iW-M66" secondAttribute="leading" constant="20" symbolic="YES" id="87w-Ah-huf"/>
                                             <constraint firstItem="dQK-ky-b9v" firstAttribute="width" secondItem="kia-08-Tzn" secondAttribute="width" id="8pI-FS-mYF"/>
                                             <constraint firstItem="3oh-KF-zQp" firstAttribute="top" secondItem="rv3-lb-vGC" secondAttribute="bottom" constant="8" symbolic="YES" id="AKQ-kr-PCJ"/>
-                                            <constraint firstItem="px2-ig-NNG" firstAttribute="top" secondItem="3SR-GZ-gwE" secondAttribute="bottom" constant="8" id="ARB-ml-xt6"/>
                                             <constraint firstItem="eFf-CN-Sbb" firstAttribute="top" secondItem="UPb-8T-RCW" secondAttribute="bottom" constant="8" symbolic="YES" id="AzM-Ck-Gie"/>
                                             <constraint firstItem="Yrz-Qj-KMs" firstAttribute="top" secondItem="3oh-KF-zQp" secondAttribute="top" id="BJk-9r-9So"/>
                                             <constraint firstItem="UPb-8T-RCW" firstAttribute="width" secondItem="rv3-lb-vGC" secondAttribute="width" id="DMf-bs-Eg4"/>

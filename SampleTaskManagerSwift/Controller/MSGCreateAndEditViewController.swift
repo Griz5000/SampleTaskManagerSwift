@@ -110,10 +110,6 @@ class MSGCreateAndEditViewController: UIViewController,
         taskStatusDateTextField.text = stringForTaskDate(localStatusDate)
     }
     
-    @IBAction func takePhoto(sender: UIButton) {
-        presentCameraForTaskStatusPhoto()
-    }
-    
     // MARK: - Scroll View Delegate
     // Dismiss the Keyboard at the appropriate time
     func scrollViewWillBeginDragging(scrollView: UIScrollView) {

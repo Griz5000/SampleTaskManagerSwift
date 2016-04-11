@@ -171,4 +171,20 @@ class MSGCreateAndEditViewControllerUITests: XCTestCase {
         app.alerts["Invalid Due Date"].collectionViews.buttons["Ok"].tap()
         XCTAssertTrue(app.navigationBars["SampleTaskManagerSwift.MSGCreateAndEditView"].exists)
     }
+    
+    func test2_1UpdateStatusPhoto() {
+        
+        app.scrollViews.otherElements.buttons["lion 3"].tap()
+        
+        let sampletaskmanagerswiftMsgdisplayandupdatephotoviewNavigationBar = app.navigationBars["SampleTaskManagerSwift.MSGDisplayAndUpdatePhotoView"]
+        sampletaskmanagerswiftMsgdisplayandupdatephotoviewNavigationBar.buttons["Camera"].tap()
+        app.buttons["PhotoCapture"].tap()
+        app.buttons["Use Photo"].tap()
+        sampletaskmanagerswiftMsgdisplayandupdatephotoviewNavigationBar.childrenMatchingType(.Button).matchingIdentifier("Back").elementBoundByIndex(0).tap()
+        
+        // Because the UI Tests run in a separate process external to the actual app, 
+        // there is currently no way to verify / Assert that the desired change has actually taken place
+        // However, although not ideal, because the navigation is successful, 
+        // there is an implicit assertion that the desired interaction was successful
+    }
 }
